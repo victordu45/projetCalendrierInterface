@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-
-import { HomePage } from './home.page';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+import { IonicModule } from '@ionic/angular';
+
+import { RegisterPageRoutingModule } from './register-routing.module';
+
+import { RegisterPage } from './register.page';
 
 @NgModule({
   imports: [
@@ -13,14 +15,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     FormsModule,
     IonicModule,
     HttpClientModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: HomePage
-      }
-    ])
+    RegisterPageRoutingModule
   ],
-  declarations: [HomePage],
+  declarations: [RegisterPage],
   providers:[HttpClient]
 })
-export class HomePageModule {}
+export class RegisterPageModule {}

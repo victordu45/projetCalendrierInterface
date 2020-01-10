@@ -1,22 +1,30 @@
-<ion-header>
+<!-- <ion-header no-border>
   <ion-toolbar>
     <ion-title>
       Login
     </ion-title>
   </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <div class="ion-padding">
-    <ion-item>
-      <ion-label position="floating">Login</ion-label>
-      <ion-input clearInput name="login"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Mot de passe</ion-label>
-      <ion-input clearInput name="mdp" type="password"></ion-input>
-    </ion-item>
-    <ion-button (click)="login()" expand="block" >Login</ion-button>
-    <ion-button expand="block" color="secondary" routerLink="/register" routerDirection="forward">Register</ion-button>
+</ion-header> -->
+<ion-content id="ion_login_page">
+  
+  <div class='container'>
+    <div class="icon-header">
+      <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
+    </div>
+    <div class="ion-padding" id="login">
+      <div class='inputs'>
+        <ion-item lines="none">
+          <ion-label position="floating">Login</ion-label>
+          <ion-input clearInput name="login" (keyup)="onLoginKey($event)"></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label position="floating">Mot de passe</ion-label>
+          <ion-input clearInput name="mdp" type="password" (keyup)="onPasswordKey($event)"></ion-input>
+        </ion-item>
+      </div>
+      <div (click)="login()" id='button' class="button_login">LOGIN</div>
+      <div id='button' class="button_register" routerLink="/register" routerDirection="forward">REGISTER</div>
+      <!-- <ion-button id='button_register' expand="block" color="secondary" >Register</ion-button> -->
+    </div>
   </div>
 </ion-content>

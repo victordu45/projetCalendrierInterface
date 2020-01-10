@@ -1,1 +1,103 @@
+// Roboto, Lato, Montserrat, Poppins, Muli
+.container {
+    // border: 1px solid red;
+    
+    width: 90%;
+    margin: auto;
+    font-family: 'Roboto-Black';
+    // transform: translateY(-50%);
+    // position: relative;
+    // top: 50%;
 
+    // background-color: blue;
+}
+
+@font-face {
+    font-family: 'Roboto', sans-serif;
+    src: url('../../assets/fonts/Roboto/Roboto-Black.ttf');
+    font-weight: 900;
+    font-style: normal;
+  }
+
+
+.icon-header {
+    // border: 1px solid red;FFFFFFFF
+    // height: 250px;
+    margin: auto;
+    // border: 1px solid red;
+    display: flex;
+    justify-content: center;
+}
+.icon-header ion-icon {
+    color: white;
+    font-size: 250px;
+    text-align: center;
+    
+}
+#login {
+    background-color: rgb(251,251,251);
+    border-radius: 10px 10px 10px 10px;
+	font-family: 'Roboto';
+}
+ion-content {
+    --background: rgb(86,140,168);
+}
+ion-title {
+    text-align: center;
+}
+.inputs {
+	background-color: white;
+	// border: 1px solid red;
+	border-radius: 10px;
+	padding: 0;
+}
+
+ion-item {
+	// border: 0px  solid red;
+	border-bottom-color: transparent !important;
+	box-shadow: none !important;
+	--background: none;
+	// padding: 0;
+	// width: 95%;
+	--padding: 0;
+}
+ion-label {
+	border: none;
+	// background: red;
+	// border: 1px solid blue;
+	// padding: 50px 0px 50px 0px;
+}
+ion-input-has-focus ion-label-md[floating], ion-input-has-focus ion-label-md[floating]{
+	color: purple; //label color when focusing
+}
+.item-input .label-md{
+	color: black; //label color
+}
+ion-input {
+	// border: 1px solid red;
+	padding-top: 50px;
+	padding-bottom: 10px;
+	font-size: 1.3em;
+	// height: 40px;
+	// line-height: 30px;
+	// margin: 250px;
+	// background-color: purple;
+}
+#button {
+	text-align: center;
+	font-family: 'Helvetica';
+	padding: 10px 0px 10px 0px;
+	width: 80%;
+	margin: 15px auto 0px auto;
+	border-radius: 5px;
+}
+.button_login {
+	border: 1px solid rgb(86,140,168);
+	color: rgb(86,140,168);
+	
+    // --background: rgb(86,140,168);
+}
+.button_register {
+	background-color: rgb(86,140,168);
+	color:white;
+}
