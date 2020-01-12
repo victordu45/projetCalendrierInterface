@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
-import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -46,10 +45,13 @@ export class HomePage {
     )
   }
 
+  
+
   ngOnInit() {
     if(localStorage.getItem('login')){
       this.router.navigateByUrl('/calend-list');
     }
+    console.log(localStorage.getItem('login'));
   }
 
 }

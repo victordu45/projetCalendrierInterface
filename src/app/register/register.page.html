@@ -1,12 +1,12 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-title>Register</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content>
-  <div class="ion-padding" id="login">
-    <ion-item>
+  <div class="ion-padding" id="mainRegister">
+    <ion-item> 
       <ion-label position="floating">Login</ion-label>
       <ion-input clearInput name="login" (keyup)="onLoginKey($event)"></ion-input>
     </ion-item>
@@ -18,12 +18,12 @@
       <ion-label position="floating">Confirm</ion-label>
       <ion-input clearInput name="mdp2" type="password" (keyup)="onPasswordConfirmKey($event)"></ion-input>
     </ion-item>
-    <div *ngIf="isConfirmed">Erreur</div>
+    <div class='error' *ngIf="isConfirmed">Passwords mismatches</div>
     <ion-item>
       <ion-label position="floating">E-mail</ion-label>
       <ion-input clearInput name="mail" type="text" (keyup)="onEmailKey($event)"></ion-input>
     </ion-item>
-    <div *ngIf="adresse">Erreur</div>
+    <div class='error' *ngIf="adresse">Invalid email adress</div>
     <ion-item>
       <ion-label position="floating">Name</ion-label>
       <ion-input clearInput name="name" type="text" (keyup)="onNameKey($event)"></ion-input>
@@ -47,7 +47,7 @@
         </ion-item>
       </ion-radio-group>
     </ion-list>
-    <ion-button (click)="register()" expand="block" >Register</ion-button>
+    <div id='button' class='button_register' (click)="register()" expand="block" >REGISTER</div>
     <ion-button id='button_register' expand="block" color="secondary" routerLink="/calendar" routerDirection="forward">Register</ion-button>
     <ion-button id='button_register' expand="block" color="secondary" routerLink="/calend-list" routerDirection="forward">Register</ion-button>
   </div>

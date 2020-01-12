@@ -1,0 +1,38 @@
+ion-content {
+    --background: rgb(86,140,168);
+}
+#mainRegister {
+    background-color: white;
+    --background: white;
+    // border: 2px solid red;
+    position: relative;
+    top: 5%;
+    width: 90%;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.error {
+    font-size: 0.7em;
+    color: red;
+    // border: 1px solid red;
+    position: absolute;
+    z-index: 2;
+    margin: 2px 0px 0px 15px;
+}
+
+#button {
+	text-align: center;
+	font-family: 'Helvetica';
+	padding: 10px 0px 10px 0px;
+	width: 100%;
+	margin: 15px auto 0px auto;
+	border-radius: 5px;
+}
+
+.button_register {
+	border: 1px solid rgb(86,140,168);
+    color:rgb(86,140,168);
+    background-color: white;
+    
+}
