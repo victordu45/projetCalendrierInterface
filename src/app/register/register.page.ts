@@ -49,7 +49,7 @@ export class RegisterPage implements OnInit {
       this.adresse = true;
     }
 
-    /*if(this.adresse == true){
+    if(this.adresse == true){
       let json = {
         login : this.login,
         password : this.password,
@@ -72,7 +72,7 @@ export class RegisterPage implements OnInit {
           }
         }
       )
-    }*/
+    }
   }
 
 

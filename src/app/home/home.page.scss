@@ -91,6 +91,9 @@ ion-input {
 	margin: 15px auto 0px auto;
 	border-radius: 5px;
 }
+#button:hover {
+	cursor: pointer;
+}
 .button_login {
 	border: 1px solid rgb(86,140,168);
 	color: rgb(86,140,168);

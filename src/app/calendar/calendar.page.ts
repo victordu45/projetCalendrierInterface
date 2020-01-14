@@ -1,58 +1,94 @@
 import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery';
+import { AlertController } from '@ionic/angular';
+import { CalendarComponentOptions} from 'ion2-calendar';
 
 @Component({
-  selector: 'calendar',
-  templateUrl: 'calendar.page.html',
-  styleUrls: ['calendar.page.scss'],
+  selector: 'app-calendar',
+  templateUrl: './calendar.page.html',
+  styleUrls: ['./calendar.page.scss'],
 })
 export class CalendarPage implements OnInit {
+  date: string;
+  type: 'string';
+  optionsMulti: CalendarComponentOptions = {
+    pickMode: 'multi'
+   };
 
-  settings = null;
-  
-  constructor() {}
+  eventSource = [];
 
-  ngOnInit(){
-    console.log("test");
-    this.settings = {
-      container: document.getElementsByClassName('calendar'),
-      calendar: document.getElementsByClassName('front'),
-      days: document.getElementsByClassName('weeks span'),
-      form: document.getElementsByClassName('back'),
-      input: document.getElementsByClassName('back input'),
-      buttons: document.getElementsByClassName('back button')
-    };
-    console.log("taille :"+this.settings.days.length);
-    this.bindUIActions();
-  }
-  
-  swap(currentSide, desiredSide){
-    this.settings.container[0].classList.toggle('flip');
-  
-    currentSide.fadeOut(900);
-    currentSide.hide();
+  constructor(public alertController: AlertController) { }
 
-    desiredSide.show();
-  }
+  async presentAlertPrompt($event) {
+    this.date = $event;
+    let dateObject = new Date($event);
 
-  bindUIActions(){
+
+    console.log(new Date(this.date));
     
-    for (var i=0; i < this.settings.days.length; i++) {
-      console.log("test2");
-        this.settings.days[i].addEventListener('click', function(){
-          console.log("Finaly!");
-      })
-   }
-/*    this.settings.days.on('click', function(){
-      console.log("test");
-      this.swap(this.settings.calendar, this.settings.form);
-      this.settings.input.focus();
+    var moisNumbers = ["01","02","03","04","05","06","07","08","09","10","11","12"];
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    
+    
+    let dateToday = dateObject.getFullYear() + "-" + moisNumbers[dateObject.getMonth()] + "-"+ dateObject.getDate()
+    const alert = await this.alertController.create({
+      header: dateToday,
+      inputs: [
+        {
+          name: 'nameEvent',
+          id: 'nameEvent',
+          type: 'text',
+          placeholder: "Nom de l'évènement"
+        },
+        {
+          name: 'dateDebut',
+          type: 'date',
+          value: dateToday,
+        },
+        {
+          name: 'heureDebut',
+          type: 'time',
+          value: '00:00',
+        },
+        {
+          name: 'dateFin',
+          type: 'date',
+          value: dateToday,
+        },
+        {
+          name: 'heureFin',
+          type: 'time',
+          value: '00:00',
+        },
+        {
+          name: 'description',
+          type: 'text',
+          placeholder: 'Description'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
+          handler: () => {
+            console.log('Confirm Ok');
+          }
+        }
+      ],
+      cssClass:"alertEvent"
     });
 
-    this.settings.buttons.on('click', function(){
-      this.swap(this.settings.form, this.settings.calendar);
-    });
-  */  }
+    
+    await alert.present();
+  }
 
- 
+
+  ngOnInit() {
+  }
+
 }
