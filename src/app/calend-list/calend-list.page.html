@@ -5,12 +5,59 @@
         <ion-icon name="power" name="log-out"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Calendar List</ion-title>
+    <ion-title>Calendar List {{uniqueID}}</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-item>
-    <ion-label>{{login}}</ion-label>
-    <ion-toggle slot="end"></ion-toggle>
-  </ion-item>
+  <ion-list>
+    <ion-list-header>
+      Personnal Calendar
+    </ion-list-header>
+    <div class='listCalendar' *ngFor="let i of calendars">
+      <ion-item-sliding (click)="redirect(i)">
+        <ion-item>
+          <div class='colorCalendar' [ngStyle]="{'background-color':i.couleurTheme }"></div>
+            <ion-label>
+              <h2>{{i['nomCalendrier']}} {{i.couleurTheme}}</h2>
+              <p>{{i['description']}}</p>
+            </ion-label> 
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option (click)="delete(i)" color="danger" expandable>
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </div>
+  </ion-list>
+  <ion-list>
+  <ion-list-header>
+    Others Calendars
+  </ion-list-header>
+    <div class='listSharedCalendars' *ngFor="let j of sharedCalendars">
+      <ion-item (click)="redirect(j)">
+        <div class='colorCalendar' [ngStyle]="{'background-color':j.color }"></div>
+        <ion-label>
+          <h2>{{j['nomCalendrier']}}</h2>
+          <h3>Calendrier partagé de <i>{{j['login']}}</i></h3>
+          <p>{{j['nomCalendrier']}}</p>
+        </ion-label>
+      </ion-item>
+    </div>
+    
+  </ion-list>
+  
+  <ion-fab horizontal="center" vertical="bottom" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="light" (click)='popup()'>
+        <ion-icon name="link"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light" routerLink="/register-calendar" routerDirection="forward">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>

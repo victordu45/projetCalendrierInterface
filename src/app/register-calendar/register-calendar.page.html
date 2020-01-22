@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item> 
+    <ion-label position="floating">Calendar Name</ion-label>
+    <ion-input clearInput name="name" (keyup)="onNameKey($event)"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Description</ion-label>
+    <ion-input clearInput name="desc" (keyup)="onDescKey($event)"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Personal Calendar Color</ion-label>
+  </ion-item>
+  <input [(colorPicker)]='color'  [style.background]="color" class="colorPicker" [cpOKButton]=true [cpOutputFormat]='rgba' [cpPositionRelativeToArrow]=false />
+  <div id='button' class='button_register' (click)="addCalendar()">ADD</div>
+</ion-content>

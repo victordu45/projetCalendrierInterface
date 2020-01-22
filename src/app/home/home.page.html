@@ -21,6 +21,9 @@
           <ion-label position="floating">Mot de passe</ion-label>
           <ion-input clearInput name="mdp" type="password" (keyup)="onPasswordKey($event)"></ion-input>
         </ion-item>
+        <ion-item lines="none">
+          <div class='error' *ngIf=errorMsg>Correspondence error</div>
+        </ion-item>
       </div>
       <div (click)="login()" id='button' class="button_login">LOGIN</div>
       <div id='button' class="button_register" routerLink="/register" routerDirection="forward">REGISTER</div>

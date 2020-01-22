@@ -39,3 +39,12 @@ ion-content {
 #button:hover {
     cursor: pointer;
 }
+.colorPicker {
+    width: 40px;
+    height: 40px;
+    border: 1px solid lightgrey;
+    border-radius: 50%;
+    margin: 5px 0 0 10px;
+    display: block;
+    position: relative;
+}

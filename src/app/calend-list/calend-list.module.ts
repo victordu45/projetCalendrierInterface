@@ -7,14 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { CalendListPageRoutingModule } from './calend-list-routing.module';
 
 import { CalendListPage } from './calend-list.page';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CalendListPageRoutingModule
+    CalendListPageRoutingModule,
+    HttpClientModule
   ],
+  providers: [HttpClient],
   declarations: [CalendListPage]
 })
 export class CalendListPageModule {}
