@@ -9,13 +9,14 @@ import { CalendarController } from 'ion2-calendar';
 import { ModalController } from '@ionic/angular';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { Toast } from '@ionic-native/toast/ngx';
+import { MenuController } from '@ionic/angular';
 
 
 @Component({
 	selector: 'app-calendar',
 	templateUrl: './calendar.page.html',
 	styleUrls: ['./calendar.page.scss'],
-	
+
 })
 
 export class CalendarPage implements OnInit {
@@ -28,19 +29,18 @@ export class CalendarPage implements OnInit {
 	// optionsMulti: any;
 	// CalendarComponentOpt = new CalendarComponent();
 
-	constructor(private toast: Toast, private clipboard: Clipboard, public modalCtrl: ModalController, private route: ActivatedRoute, public alertController: AlertController, private http: HttpClient, private router: Router, public calendarCtrl: CalendarController) { }
+	constructor(private menu: MenuController, private toast: Toast, private clipboard: Clipboard, public modalCtrl: ModalController, private route: ActivatedRoute, public alertController: AlertController, private http: HttpClient, private router: Router, public calendarCtrl: CalendarController) { }
 
 	errorMsg = "";
 	calendar = null;
 
-	
+
 
 	optionsMulti: CalendarComponentOptions = {
 		pickMode: 'single',
 		daysConfig: [],
 	};
-	
-	
+
 	daysConfig() {
 		console.log("debut");
 		let __daysConfig = [];
@@ -85,7 +85,7 @@ export class CalendarPage implements OnInit {
 							// return __daysConfig;
 						}
 					}
-					
+
 				}
 				else {
 					console.log(data);
@@ -95,81 +95,20 @@ export class CalendarPage implements OnInit {
 
 		)
 		let _daysConfig = [
-				{
-					date: new Date(2020, 0, 19),
-					// title: 'Test title',
-					subTitle: '+',
-					cssClass: 'my-cal',
-					marked: true,
-		
-				}];
-				console.log("dedans");
+			{
+				date: new Date(2020, 0, 19),
+				// title: 'Test title',
+				subTitle: '+',
+				cssClass: 'my-cal',
+				marked: true,
+
+			}];
+		console.log("dedans");
 		this.optionsMulti.daysConfig = __daysConfig;
 		// return _daysConfig;
 
 
 	}
-	
-
-
-
-
-
-
-	// console.log(__daysConfig);
-	// let _daysConfig = [
-	// 	{
-	// 		date: new Date(2020, 0, 19),
-	// 		// title: 'Test title',
-	// 		subTitle: '+',
-	// 		cssClass: 'my-cal',
-	// 		marked: true,
-
-	// 	},
-	// 	{
-	// 		date: new Date(2020, 0, 21),
-	// 		subTitle: '.',
-	// 		disable: true,
-	// 		marked: true
-	// 	},
-	// 	{
-	// 		date: new Date(2020, 3, 1),
-	// 		subTitle: 'April Fools',
-	// 		marked: true
-	// 	},
-	// 	{
-	// 		date: new Date(2020, 3, 7),
-	// 		subTitle: 'World Health',
-	// 		marked: true
-	// 	},
-	// 	{
-	// 		date: new Date(2020, 4, 31),
-	// 		subTitle: 'No-Smoking',
-	// 		marked: true
-	// 	},
-	// 	{
-	// 		date: new Date(2020, 5, 1),
-	// 		subTitle: 'Children\'s',
-	// 		marked: true
-	// 	}
-	// ];
-	// console.log(_daysConfig);
-	// return _daysConfig;
-	// _daysConfig.push(...this.days);
-
-	// let ionCalendar = document.querySelector("ion-calendar");
-	// console.log(ionCalendar);
-	// this.calendarCtrl.openCalendar({
-	// 	from: new Date(2020, 0, 1),
-	// 	to: new Date(2020, 11.1),
-	// 	daysConfig: _daysConfig
-	// })
-	// 	.then((res: any) => { console.log(res) })
-	// 	.catch(() => { })
-
-	// sleep(2000);
-
-
 
 	alertShare() {
 		let json = {
@@ -342,13 +281,9 @@ export class CalendarPage implements OnInit {
 	}
 
 	ngOnInit() {
+		this.calendar = JSON.parse(localStorage.getItem('calendar'));
+		let couleur = localStorage.getItem('couleurTheme');
 		this.daysConfig();
-		var couleur = localStorage.getItem('couleurTheme');
-		this.route.queryParams.subscribe(params => {
-			this.calendar = JSON.parse(params["param"]);
-			console.log(this.calendar['idCalendrier']);
-		});
-		localStorage.setItem('idCalendrier', this.calendar['idCalendrier']);
 		let json = {
 			uniqueID: localStorage.getItem('uniqueID'),
 			idCalendar: this.calendar['idCalendrier']
@@ -434,10 +369,7 @@ export class CalendarPage implements OnInit {
 			document.ontouchmove = null;
 		}
 	}
-
-
 }
-
 
 function hexToRGB(hex, alpha) {
 	var r = parseInt(hex.slice(1, 3), 16),

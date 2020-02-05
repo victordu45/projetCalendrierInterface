@@ -1,23 +1,32 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>chat</ion-title>
-  </ion-toolbar>
+	<ion-toolbar>
+		<ion-back-button slot="start">
+		</ion-back-button>
+		<ion-title>{{id}}</ion-title>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
-</ion-content>
-<ion-tabs>
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="schedule" routerLink="/calendar" routerDirection="forward">
-      <ion-icon name="calendar"></ion-icon>
-      <ion-label>Calendar</ion-label>
-      <ion-badge>6</ion-badge>
-    </ion-tab-button>
+	<div class='chat'>
+		<div class='msg'>
+			<div class='other'>Un super message d'un autre <div class='hour'>11:09PM</div></div>
+			
+		</div>
+		<div class='msg'>
+			<div class='own'>Un message de ma part <div class='hour'>11:09PM</div></div>
+			
+		</div>
+		<div class='msg'>
+			<div class='other'>Un super long message pour essayer si ca fonctionne ben en tabarnacle message d'un autre Un super long message pour essayer si ca fonctionne ben en tabarnacle message d'un autre Un super long message pour essayer si ca fonctionne ben en tabarnacle message d'un autre</div>
+		</div>
+		<div class='msg'>
+			<div class='own'>Un message de ma part <div class='hour'>11:09PM</div></div>
+			
+		</div>
+	</div>
 
-    <ion-tab-button tab="speakers" routerLink="/chat" routerDirection="forward">
-      <ion-icon name="contacts"></ion-icon>
-      <ion-label>Chat</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs>
+</ion-content>
+<div class='envois'>
+	<ion-input type='text' mode='ios' id='chatInput' placeholder='Votre Message'></ion-input>
+	<ion-button id='buttonEnvois'><ion-icon name="send"></ion-icon></ion-button>
+</div>

@@ -32,13 +32,12 @@
 			<ion-input clearInput name="mail" type="text" (keyup)="onSurnameKey($event)"></ion-input>
 		</ion-item>
 		<ion-item>
-			<ion-label>Gender</ion-label>
+			<ion-label>Personal Calendar Color</ion-label>
+			<input [(colorPicker)]='color' name="color" [style.background]="color" class="colorPicker" [cpOKButton]=true [cpOutputFormat]='rgba' [cpPositionRelativeToArrow]=false />
 		</ion-item>
 		<ion-item>
-			<ion-label>Personal Calendar Color</ion-label>
+			<ion-label>Gender</ion-label>
 		</ion-item>
-		<input [(colorPicker)]='color' name="color" [style.background]="color" class="colorPicker" [cpOKButton]=true
-			[cpOutputFormat]='rgba' [cpPositionRelativeToArrow]=false />
 		<ion-list>
 			<ion-radio-group>
 				<ion-item>

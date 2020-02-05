@@ -3,6 +3,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NavController, AlertController } from '@ionic/angular';
+import { ControlContainer } from '@angular/forms';
 
 @Component({
   selector: 'app-calend-list',
@@ -107,13 +108,9 @@ export class CalendListPage implements OnInit {
   }
 
 
-  redirect(a) {
-    let navigationExtra: NavigationExtras = {
-      queryParams: {
-        param: JSON.stringify(a)
-      }
-    };
-    this.navCtrl.navigateForward(['calendar'], navigationExtra);
+  redirect(calendrier) {
+    localStorage.setItem('calendar', JSON.stringify(calendrier));
+    this.navCtrl.navigateForward(['calendar']);
   }
 
   getSharedCalendars() {

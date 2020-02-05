@@ -1,0 +1,54 @@
+.envois {
+    // border: 1px solid red;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 98%;
+    margin: auto;
+}
+#chatInput {
+    // border: 1px solid purple !important;
+    padding-left: 10px;
+    // width: 90%;
+}
+#buttonEnvois {
+    width: 50px;
+}
+.chat {
+    display: flex;
+    flex-direction: column;
+    width: 98%;
+    margin: 2% auto 0 auto;
+}
+.chat .msg {
+    margin-bottom: 10px; 
+    // display: flex;
+    // border: 1px solid green;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.chat .other {
+    // position: relative;
+    // left: 10px;
+    // border: 1px solid red;
+    align-self: flex-start;
+    max-width: 95%;
+    border-radius: 7px;
+    padding: 5px 10px 5px 10px;
+    background-color: lightgrey;
+    box-shadow: 0px 0px 2px #B2B2B2;
+}
+.chat .own {
+    // position: relative;
+    // right: 10px;
+    align-self: flex-end;
+    // border: 1px solid blue;
+    max-width: 95%;
+    border-radius: 7px;
+    padding: 5px 10px 5px 10px;
+    box-shadow: 0px 0px 2px #B2B2B2;
+    background-color: #21bf73;
+    // color: white;
+}

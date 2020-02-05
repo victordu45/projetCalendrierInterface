@@ -1,22 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button (click)="logout()">
-        <ion-icon name="power" name="log-out"></ion-icon>
+    <ion-back-button slot="start">
+    </ion-back-button>
+    <ion-title>{{calendar['nomCalendrier']}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/chat" routerDirection="forward">
+        <ion-icon name="chatbubbles"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>{{calendar['nomCalendrier']}}</ion-title>
-  
+    <ion-buttons slot="end">
+      <ion-button routerLink="/setting" routerDirection="forward">
+        <ion-icon name="settings"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-calendar [(ngModel)]="dateRange"
   [options]="optionsMulti"
   (change)="changeValue($event)"
   [type]="date"
   [format]="'YYYY-MM-DD'">
 </ion-calendar>
-<!--<div class='listEvent' *ngFor="let i of events"></div>-->
 <ion-content>
   <div class='mainEvenements'>
     <div class='evenement' *ngFor="let i of evenements" [ngStyle]="{'background-color' :i.couleurThemeRgba , 'border-left':i.couleurTheme}">
@@ -30,20 +34,3 @@
   </div>
 </ion-content>
 <ion-fab-button class='addEvent' name="button" value="$event" (click)="presentAlertPrompt()"><ion-icon name="add"></ion-icon></ion-fab-button>
-
-
-<ion-tabs>
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="schedule" routerLink="/calendar" routerDirection="forward">
-      <ion-icon name="calendar"></ion-icon>
-      <ion-label>Calendar</ion-label>
-      <ion-badge>6</ion-badge>
-    </ion-tab-button>
-
-    <ion-tab-button tab="speakers" routerLink="/chat" routerDirection="forward">
-      <ion-icon name="contacts"></ion-icon>
-      <ion-label>Chat</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs>
-
