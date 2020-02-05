@@ -2,17 +2,16 @@
   <ion-toolbar>
     <ion-back-button slot="start">
     </ion-back-button>
-    <ion-title>setting</ion-title>
+    <ion-title>settinglist</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <ion-list>
-    <ion-item (click)="redirect(0)">
+    <ion-item (click)="redirect()">
       <ion-label>Infos</ion-label>
     </ion-item>
-    <ion-item (click)="redirect(1)">
-      <ion-label>Members</ion-label>
+    <ion-item (click)="logout()">
+      <ion-label>Logout</ion-label>
     </ion-item>
   </ion-list>
 </ion-content>

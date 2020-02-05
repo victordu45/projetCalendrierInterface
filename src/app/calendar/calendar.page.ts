@@ -80,9 +80,6 @@ export class CalendarPage implements OnInit {
 									}
 								)
 							}
-							console.log("lalalalala");
-							console.log(__daysConfig);
-							// return __daysConfig;
 						}
 					}
 

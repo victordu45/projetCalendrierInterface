@@ -14,11 +14,25 @@
 #buttonEnvois {
     width: 50px;
 }
+ng-template {
+    display: flex;
+    flex-direction: column;
+    width: 96%;
+    margin: 2% auto 0 auto;
+    font-family: 'Arial';
+}
 .chat {
     display: flex;
     flex-direction: column;
-    width: 98%;
+    width: 96%;
     margin: 2% auto 0 auto;
+    // margin: auto;
+    font-family: 'Arial';
+    // font-weight: bold;
+}
+.chat .user {
+    font-weight: bold;
+    
 }
 .chat .msg {
     margin-bottom: 10px; 
@@ -35,10 +49,10 @@
     // border: 1px solid red;
     align-self: flex-start;
     max-width: 95%;
-    border-radius: 7px;
+    border-radius: 7px 7px 7px 0px;
     padding: 5px 10px 5px 10px;
     background-color: lightgrey;
-    box-shadow: 0px 0px 2px #B2B2B2;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
 }
 .chat .own {
     // position: relative;
@@ -46,9 +60,15 @@
     align-self: flex-end;
     // border: 1px solid blue;
     max-width: 95%;
-    border-radius: 7px;
+    border-radius: 7px 7px 0px 7px;
     padding: 5px 10px 5px 10px;
-    box-shadow: 0px 0px 2px #B2B2B2;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
     background-color: #21bf73;
     // color: white;
+}
+
+.chat .msg .hour {
+    font-size: 0.7em;
+    // color: grey;
+    // font-style: italic;
 }

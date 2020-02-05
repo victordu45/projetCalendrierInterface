@@ -40,6 +40,14 @@ const routes: Routes = [
     path: 'membres',
     loadChildren: () => import('./membres/membres.module').then( m => m.MembresPageModule)
   },
+  {
+    path: 'settinglist',
+    loadChildren: () => import('./settinglist/settinglist.module').then( m => m.SettinglistPageModule)
+  },
+  {
+    path: 'infolist',
+    loadChildren: () => import('./infolist/infolist.module').then( m => m.InfolistPageModule)
+  },
 ];
 
 @NgModule({

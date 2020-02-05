@@ -7,26 +7,33 @@
 </ion-header>
 
 <ion-content>
-	<div class='chat'>
-		<div class='msg'>
-			<div class='other'>Un super message d'un autre <div class='hour'>11:09PM</div></div>
-			
-		</div>
-		<div class='msg'>
-			<div class='own'>Un message de ma part <div class='hour'>11:09PM</div></div>
-			
-		</div>
-		<div class='msg'>
-			<div class='other'>Un super long message pour essayer si ca fonctionne ben en tabarnacle message d'un autre Un super long message pour essayer si ca fonctionne ben en tabarnacle message d'un autre Un super long message pour essayer si ca fonctionne ben en tabarnacle message d'un autre</div>
-		</div>
-		<div class='msg'>
-			<div class='own'>Un message de ma part <div class='hour'>11:09PM</div></div>
-			
+	<div class='chat' >
+		<div class='msg' *ngFor="let i of chats" >
+			<div class="{{i['class']}}" [ngStyle]="{'background-color' :i.color}"><div class='user'>{{i['idUtilisateur']}}</div>
+				{{i['contenu']}} 
+				<div class='hour'>{{i['datemessage']}}</div>
+			</div>			
 		</div>
 	</div>
+		<!-- <div class='msg'>
+			<div class='own'><div class='user'>{{i['idUtilisateur']}}</div>
+				{{i['contenu']}} 
+				<div class='hour'>{{i['datemessage']}}</div>
+			</div>	
+		</div> -->
+		<!-- <div class='msg'>
+			<div class='other'> <div class='user'>Bobby</div> 
+			Un super long message pour essayer si ca fonctionne ben en tabarnacle message d'un autre Un super long message pour essayer si ca fonctionne ben en tabarnacle message d'un autre Un super long message pour essayer si ca fonctionne ben en tabarnacle message d'un autre</div>
+			
+		</div>
+		<div class='msg'>
+			<div class='own'>Un message de ma part <div class='hour'>11:09PM</div></div>
+			
+		</div> -->
+	
 
 </ion-content>
 <div class='envois'>
-	<ion-input type='text' mode='ios' id='chatInput' placeholder='Votre Message'></ion-input>
-	<ion-button id='buttonEnvois'><ion-icon name="send"></ion-icon></ion-button>
+	<ion-input (keyup)="onChatKey($event)" type='text' mode='ios' id='chatInput' placeholder='Votre Message'></ion-input>
+	<ion-button id='buttonEnvois' (click)="send()"><ion-icon name="send"></ion-icon></ion-button>
 </div>

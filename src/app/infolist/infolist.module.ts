@@ -2,19 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { InfolistPageRoutingModule } from './infolist-routing.module';
+import { InfolistPage } from './infolist.page';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { ChatPageRoutingModule } from './chat-routing.module';
-import { ChatPage } from './chat.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ChatPageRoutingModule,
+    InfolistPageRoutingModule,
     HttpClientModule
   ],
-  declarations: [ChatPage],
+  declarations: [InfolistPage],
   providers:[HttpClient]
 })
-export class ChatPageModule {}
+export class InfolistPageModule {}

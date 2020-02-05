@@ -4,6 +4,11 @@
     </ion-back-button>
     <ion-title>{{calendar['nomCalendrier']}}</ion-title>
     <ion-buttons slot="end">
+      <ion-button  (click)="alertShare()">
+        <ion-icon name="share"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
       <ion-button routerLink="/chat" routerDirection="forward">
         <ion-icon name="chatbubbles"></ion-icon>
       </ion-button>
