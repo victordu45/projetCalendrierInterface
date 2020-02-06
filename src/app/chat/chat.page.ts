@@ -26,6 +26,8 @@ export class ChatPage implements OnInit {
 		setInterval(() => { 
 			this.myTimer(); // Now the "this" still references the component
 		 }, 1000);
+		let chat = document.querySelector("ion-content");
+		chat.scrollToBottom(300);
 	}
 
 	send() {
@@ -43,6 +45,8 @@ export class ChatPage implements OnInit {
 		this.http.post(environment.adressePython + '/createMessage', json, httpoption).subscribe(
 			data => {
 				this.getMessages();
+				let chat = document.querySelector("ion-content");
+				// chat.scrollToBottom(3000);
 			})
 	}
 	myTimer() {
@@ -84,6 +88,7 @@ export class ChatPage implements OnInit {
 				else {
 					console.log("pas de msg dans le chat");
 				}
+				
 			})
 	}
 	 

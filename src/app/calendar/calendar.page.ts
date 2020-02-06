@@ -311,7 +311,7 @@ export class CalendarPage implements OnInit {
 		)
 
 		let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-		let buttonAddEvent = document.querySelector(".addEvent");
+		let buttonAddEvent : HTMLElement = document.querySelector(".addEvent") as HTMLElement;
 		buttonAddEvent.onmousedown = dragMouseDown;
 		buttonAddEvent.ontouchstart = dragMouseDown;
 		// buttonAddEvent.style.left = "50%";
