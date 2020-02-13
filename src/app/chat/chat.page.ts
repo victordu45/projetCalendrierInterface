@@ -15,20 +15,38 @@ export class ChatPage implements OnInit {
 	id = null;
 	chat = "";
 	chats;
-  onChatKey(event) { this.chat = event.target.value; }
-  uniqueID = localStorage.getItem('uniqueID');
+	offsetMessage = -1;
+	onChatKey(event) { this.chat = event.target.value; }
+	uniqueID = localStorage.getItem('uniqueID');
 
 
 	ngOnInit() {
 		this.calendar = JSON.parse(localStorage.getItem('calendar'));
 		this.id = "Chat de " + this.calendar['nomCalendrier'];
 		this.getMessages();
-		setInterval(() => { 
-			this.myTimer(); // Now the "this" still references the component
-		 }, 1000);
+		// setInterval(() => { 
+		// 	this.myTimer(); // Now the "this" still references the component
+		//  }, 1000);
 		let chat = document.querySelector("ion-content");
-		chat.scrollToBottom(300);
+		chat.scrollToBottom(1000);
+
 	}
+
+
+	loadData(event) {
+		this.getMessages();
+		setTimeout(() => {
+			console.log('Done');
+			event.target.complete();
+			
+			// App logic to determine if all data is loaded
+			// and disable the infinite scroll
+			//   if (data.length == 1000) {
+			// 	event.target.disabled = true;
+			//   }
+		}, 500);
+	}
+
 
 	send() {
 		let json = {
@@ -45,7 +63,7 @@ export class ChatPage implements OnInit {
 		this.http.post(environment.adressePython + '/createMessage', json, httpoption).subscribe(
 			data => {
 				this.getMessages();
-				let chat = document.querySelector("ion-content");
+				// let chat = document.querySelector("ion-content");
 				// chat.scrollToBottom(3000);
 			})
 	}
@@ -57,6 +75,7 @@ export class ChatPage implements OnInit {
 	getMessages() {
 		let json = {
 			uniqueID: localStorage.getItem('uniqueID'),
+			offset: this.offsetMessage,
 			idCalendrier: this.calendar['idCalendrier']
 		}
 		let httpoption = {
@@ -72,10 +91,11 @@ export class ChatPage implements OnInit {
 					this.chats = [];
 					for (let i in data) {
 						let msg = data[i];
-						
-						if(msg['idUtilisateur'] == localStorage.getItem("uniqueID")) {
+						this.offsetMessage = msg["offset"];
+
+						if (msg['idUtilisateur'] == localStorage.getItem("uniqueID")) {
 							msg['class'] = "own";
-							msg['color'] = hexToRGB(msg['color'],0.5);
+							msg['color'] = hexToRGB(msg['color'], 0.5);
 						}
 						else {
 							// console.log("else else");
@@ -88,21 +108,21 @@ export class ChatPage implements OnInit {
 				else {
 					console.log("pas de msg dans le chat");
 				}
-				
+
 			})
 	}
-	 
+
 }
 function hexToRGB(hex, alpha) {
 	var r = parseInt(hex.slice(1, 3), 16),
-	  g = parseInt(hex.slice(3, 5), 16),
-	  b = parseInt(hex.slice(5, 7), 16);
-  
+		g = parseInt(hex.slice(3, 5), 16),
+		b = parseInt(hex.slice(5, 7), 16);
+
 	if (alpha) {
-	  return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
+		return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
 	} else {
-	  return "rgb(" + r + ", " + g + ", " + b + ")";
+		return "rgb(" + r + ", " + g + ", " + b + ")";
 	}
-  }
-  
+}
+
 

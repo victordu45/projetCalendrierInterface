@@ -25,9 +25,6 @@ export class CalendarPage implements OnInit {
 
 	evenements;
 	eventSource = [];
-	// CalendarComponentOptions: CalendarComponentOptions;
-	// optionsMulti: any;
-	// CalendarComponentOpt = new CalendarComponent();
 
 	constructor(private menu: MenuController, private toast: Toast, private clipboard: Clipboard, public modalCtrl: ModalController, private route: ActivatedRoute, public alertController: AlertController, private http: HttpClient, private router: Router, public calendarCtrl: CalendarController) { }
 

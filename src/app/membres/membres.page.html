@@ -2,10 +2,32 @@
   <ion-toolbar>
     <ion-back-button slot="start">
     </ion-back-button>
-    <ion-title>membres</ion-title>
+    <ion-title>Membres</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div *ngIf="condition == 1; then thenBlock else elseBlock"></div>
+  <ng-template #thenBlock>
+    <!--<div *ngFor="let i of membres">-->
+      <ion-item-sliding (click)="redirect(i)">
+        <ion-item>
+          <h2>Coucou</h2>
+          <ion-toggle slot="end" color="success" checked></ion-toggle>
+        </ion-item>
+        <ion-item-options side="start">
+          <ion-item-option (click)="delete(i)" color="danger" expandable>
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    <!--</div>-->
+    </ng-template>
+    <ng-template #elseBlock>
+      <!--<div *ngFor="let i of membres">-->
+        <ion-item>
+          <h2>Coucou</h2>
+        </ion-item>
+      <!--</div>-->
+    </ng-template>
 </ion-content>

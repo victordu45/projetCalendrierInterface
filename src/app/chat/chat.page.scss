@@ -32,6 +32,8 @@ ng-template {
 }
 .chat .user {
     font-weight: bold;
+    margin-bottom: 2px;
+    font-size: 1.2em;
     
 }
 .chat .msg {
@@ -68,7 +70,8 @@ ng-template {
 }
 
 .chat .msg .hour {
-    font-size: 0.7em;
+    font-size: 0.5em;
+    margin-top: 5px;
     // color: grey;
     // font-style: italic;
 }
