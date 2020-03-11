@@ -47,8 +47,6 @@ export class HomePage {
     )
   }
 
-
-
   ngOnInit() {
     if (localStorage.getItem('login')) {
       this.router.navigateByUrl('/calend-list');

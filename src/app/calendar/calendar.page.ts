@@ -3,7 +3,7 @@ import { AlertController } from '@ionic/angular';
 import { CalendarComponentOptions, CalendarModalOptions, CalendarModal } from 'ion2-calendar';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders, HttpClientModule, HttpHeaderResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { CalendarController } from 'ion2-calendar';
 import { ModalController } from '@ionic/angular';
@@ -25,12 +25,10 @@ export class CalendarPage implements OnInit {
 
 	evenements;
 	eventSource = [];
-
-	constructor(private menu: MenuController, private toast: Toast, private clipboard: Clipboard, public modalCtrl: ModalController, private route: ActivatedRoute, public alertController: AlertController, private http: HttpClient, private router: Router, public calendarCtrl: CalendarController) { }
-
+	constructor( private menu: MenuController, private toast: Toast, private clipboard: Clipboard, public modalCtrl: ModalController, private route: ActivatedRoute, public alertController: AlertController, private http: HttpClient, private router: Router, public calendarCtrl: CalendarController) { }
 	errorMsg = "";
 	calendar = null;
-
+	nombre = 0;
 
 
 	optionsMulti: CalendarComponentOptions = {
@@ -65,10 +63,6 @@ export class CalendarPage implements OnInit {
 							for (let i = 0; i < this.evenements.length; i++) {
 								let evenement = this.evenements[i];
 								let dateDebut = new Date(evenement['dateDebut']);
-								// console.log("dans la boucle");
-								// console.log(evenement);
-								// console.log(dateDebut);
-								// console.log(dateDebut.getFullYear(),dateDebut.getMonth(),dateDebut.getDate());
 								__daysConfig.push(
 									{
 										date: new Date(dateDebut.getFullYear(), dateDebut.getMonth(), dateDebut.getDate()),
@@ -104,6 +98,15 @@ export class CalendarPage implements OnInit {
 
 	}
 
+	test(i){
+		let navigationExtras: NavigationExtras = {
+			queryParams: {
+			  special: JSON.stringify(i)
+			}
+		  };
+		this.router.navigate(["/event"], navigationExtras);
+	}
+
 	alertShare() {
 		let json = {
 			name: localStorage.getItem('uniqueID'),
@@ -121,6 +124,7 @@ export class CalendarPage implements OnInit {
 				this.alertCoucou(data['token']);
 			}
 		)
+		  
 	}
 
 	async alertCoucou(any) {
@@ -130,6 +134,19 @@ export class CalendarPage implements OnInit {
 				console.log(toast);
 			}
 		);
+	}
+
+	redirect(){
+		var varEvent = document.querySelector('ion-fab-button');
+		let event = varEvent.getAttribute('value');
+		var date = event;
+		console.log("envoyé", event);
+		let navigationExtras: NavigationExtras = {
+			queryParams: {
+				special: JSON.stringify(event)
+			}
+		};
+		this.router.navigate(["/newevent"], navigationExtras);
 	}
 
 	changeValue(event) {
@@ -155,14 +172,13 @@ export class CalendarPage implements OnInit {
 						let evenement = data[i];
 						evenement['couleurThemeRgba'] = hexToRGB(evenement['couleurTheme'], 0.2);
 						evenement['couleurTheme'] = "5px solid " + evenement['couleurTheme'];
-						let debut = new Date(evenement['dateDebut']);
-
-						let fin = new Date(evenement['dateFin']);
-						evenement['heureDebut'] = debut.getHours() + ":" + debut.getMinutes();
-						evenement['heureFin'] = fin.getHours() + ":" + fin.getMinutes();
-						evenement['dateFin'] = fin.getDate() + "/" + fin.getMonth() + "/" + fin.getFullYear();
+						let debut = evenement['dateDebut'];
+						let fin = evenement['dateFin'];
+						evenement['heureDebut'] = debut.split(' ')[1]
+						evenement['heureFin'] = fin.split(' ')[1];
+						evenement['dateDebut'] = debut.split(' ')[0]
+						evenement['dateFin'] = fin.split(' ')[0]
 						this.evenements.push(evenement);
-						console.log(evenement);
 					}
 					// this.optionsMulti.daysConfig = this.daysConfig();
 				}
@@ -174,7 +190,7 @@ export class CalendarPage implements OnInit {
 		)
 	}
 
-	async presentAlertPrompt() {
+	/*async presentAlertPrompt() {
 		var varEvent = document.querySelector('ion-fab-button');
 		let event = varEvent.getAttribute('value');
 		var date = event;
@@ -267,7 +283,7 @@ export class CalendarPage implements OnInit {
 
 
 		await alert.present();
-	}
+	}*/
 
 	logout() {
 		localStorage.clear();
@@ -275,6 +291,7 @@ export class CalendarPage implements OnInit {
 	}
 
 	ngOnInit() {
+
 		this.calendar = JSON.parse(localStorage.getItem('calendar'));
 		let couleur = localStorage.getItem('couleurTheme');
 		this.daysConfig();
@@ -311,6 +328,7 @@ export class CalendarPage implements OnInit {
 		let buttonAddEvent : HTMLElement = document.querySelector(".addEvent") as HTMLElement;
 		buttonAddEvent.onmousedown = dragMouseDown;
 		buttonAddEvent.ontouchstart = dragMouseDown;
+		let x_begin, y_begin, x_end, y_end; 
 		// buttonAddEvent.style.left = "50%";
 		// buttonAddEvent.style.bottom = "10px";
 		function dragMouseDown(e) {
@@ -320,6 +338,8 @@ export class CalendarPage implements OnInit {
 			// get the mouse cursor position at startup:
 			pos3 = e.clientX;
 			pos4 = e.clientY;
+			x_begin = pos3; // va servir au petit jeu 
+			y_begin = pos4; // va servir au petit jeu
 			if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
 				pos3 = e.targetTouches[0].pageX;
 				pos4 = e.targetTouches[0].pageY;
@@ -355,12 +375,25 @@ export class CalendarPage implements OnInit {
 			buttonAddEvent.style.left = (buttonAddEvent.offsetLeft - pos1) + "px";
 		}
 
-		function closeDragElement() {
+		function closeDragElement(e) {
 			// stop moving when mouse button is released:
 			document.onmouseup = null;
 			document.ontouchend = null;
 			document.onmousemove = null;
 			document.ontouchmove = null;
+			let clientX = e.clientX;
+			let clientY = e.clientY;
+			if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
+				clientX = e.targetTouches[0].pageX;
+				clientY = e.targetTouches[0].pageY;
+			}
+			x_end = clientX;
+			y_end = clientY;
+			let Xdiff = Math.abs(x_begin - x_end);
+			let Ydiff = Math.abs(y_begin - y_end);
+			console.log("x_begin : ",x_begin , " , y_begin : " , y_begin , " x_end ", x_end , " y_end ", y_end ,  " Xdiff " , Xdiff, " Ydiff" , Ydiff);
+			buttonAddEvent.style.top = (buttonAddEvent.offsetTop - pos2) + "px";
+			buttonAddEvent.style.left = (buttonAddEvent.offsetLeft - pos1) +"px";
 		}
 	}
 }

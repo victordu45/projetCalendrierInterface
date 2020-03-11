@@ -18,7 +18,7 @@ export class ChatPage implements OnInit {
 	offsetMessage = -1;
 	onChatKey(event) { this.chat = event.target.value; }
 	uniqueID = localStorage.getItem('uniqueID');
-
+	nombre = 0
 
 	ngOnInit() {
 		this.calendar = JSON.parse(localStorage.getItem('calendar'));
@@ -29,9 +29,7 @@ export class ChatPage implements OnInit {
 		//  }, 1000);
 		let chat = document.querySelector("ion-content");
 		chat.scrollToBottom(1000);
-
 	}
-
 
 	loadData(event) {
 		this.getMessages();

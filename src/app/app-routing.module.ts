@@ -48,6 +48,18 @@ const routes: Routes = [
     path: 'infolist',
     loadChildren: () => import('./infolist/infolist.module').then( m => m.InfolistPageModule)
   },
+  {
+    path: 'modifinfolist',
+    loadChildren: () => import('./modifinfolist/modifinfolist.module').then( m => m.ModifinfolistPageModule)
+  },
+  {
+    path: 'event',
+    loadChildren: () => import('./event/event.module').then( m => m.EventPageModule)
+  },
+  {
+    path: 'newevent',
+    loadChildren: () => import('./newevent/newevent.module').then( m => m.NeweventPageModule)
+  },
 ];
 
 @NgModule({

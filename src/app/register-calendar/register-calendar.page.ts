@@ -36,7 +36,7 @@ export class RegisterCalendarPage implements OnInit {
     this.http.post(environment.adressePython+'/addCalendar', json, httpoption).subscribe(
       data=>{
         console.log(data);
-        if(data['result'] == "added"){
+        if(data['result'] == "succes"){
           this.router.navigateByUrl('/calend-list');
         }
         else{

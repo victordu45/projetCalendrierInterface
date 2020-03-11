@@ -1,0 +1,35 @@
+
+.depenses {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    // height: 50px;
+    // padding: 0;
+    // margin: 0;
+    // border: 1px solid purple;
+}
+.ligne {
+    // border: 1px solid red;
+    // height: 50px;
+    // padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.ligne:nth-child(1) {
+    height: 40px;
+}
+.titre, .prix {
+    color: blueviolet;
+    font-size: 1.1em;
+}
+.prix {
+    font-weight: bold;
+}
+.payeur, .date {
+    color: grey;
+    font-size: 0.8em;
+}
+.payeur span {
+    font-weight: bold;
+}

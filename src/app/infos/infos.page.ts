@@ -15,10 +15,12 @@ export class InfosPage implements OnInit {
   admin = null;
   nombre = null;
 
+
   ngOnInit() {
     let calendrier= JSON.parse(localStorage.getItem('calendar'))
     this.calendName = calendrier['idCalendrier']
     console.log(calendrier)
+
     let json = {
       idCal: calendrier['idCalendrier']
     }

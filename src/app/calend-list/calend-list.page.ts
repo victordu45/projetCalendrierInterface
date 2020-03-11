@@ -3,7 +3,6 @@ import { Router, NavigationExtras } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NavController, AlertController } from '@ionic/angular';
-import { ControlContainer } from '@angular/forms';
 
 @Component({
   selector: 'app-calend-list',

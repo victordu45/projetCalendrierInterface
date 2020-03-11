@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpClientModule, HttpHeaderResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-infolist',
-  templateUrl: './infolist.page.html',
-  styleUrls: ['./infolist.page.scss'],
+  selector: 'app-modifinfolist',
+  templateUrl: './modifinfolist.page.html',
+  styleUrls: ['./modifinfolist.page.scss'],
 })
-export class InfolistPage implements OnInit {
+export class ModifinfolistPage implements OnInit {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient) { }
 
   login = null;
   email = null;
@@ -34,8 +33,9 @@ export class InfolistPage implements OnInit {
         this.nom = data['nom'],
         this.prenom = data['prenom']
       })
-  } 
-  modify(){
-    this.router.navigateByUrl('/modifinfolist');
+  }
+
+  valider(){
+    
   }
 }

@@ -10,6 +10,7 @@
 			<ion-label position="floating">Login</ion-label>
 			<ion-input clearInput name="login" (keyup)="onLoginKey($event)"></ion-input>
 		</ion-item>
+		<div class='error' *ngIf="errLogin != ''">{{errLogin}}</div>
 		<ion-item>
 			<ion-label position="floating">Password</ion-label>
 			<ion-input clearInput name="mdp" type="password" (keyup)="onPasswordKey($event)"></ion-input>
@@ -23,6 +24,7 @@
 			<ion-label position="floating">E-mail</ion-label>
 			<ion-input clearInput name="mail" type="text" (keyup)="onEmailKey($event)"></ion-input>
 		</ion-item>
+		<div class='error' *ngIf="errMail != ''">{{errMail}}</div>
 		<ion-item>
 			<ion-label position="floating">Name</ion-label>
 			<ion-input clearInput name="name" type="text" (keyup)="onNameKey($event)"></ion-input>
@@ -35,25 +37,9 @@
 			<ion-label>Personal Calendar Color</ion-label>
 			<input [(colorPicker)]='color' name="color" [style.background]="color" class="colorPicker" [cpOKButton]=true [cpOutputFormat]='rgba' [cpPositionRelativeToArrow]=false />
 		</ion-item>
-		<ion-item>
-			<ion-label>Gender</ion-label>
-		</ion-item>
-		<ion-list>
-			<ion-radio-group>
-				<ion-item>
-					<ion-label>Male</ion-label>
-					<ion-radio slot="start" color="success" value="male" name="gender" (keyup)="onGenderKey($event)"
-						checked></ion-radio>
-				</ion-item>
-				<ion-item>
-					<ion-label>Female</ion-label>
-					<ion-radio slot="start" color="tertiary" value="female" name="gender" (keyup)="onGenderKey($event)">
-					</ion-radio>
-				</ion-item>
-			</ion-radio-group>
-		</ion-list>
 
 
 		<div id='button' class='button_register' (click)="register()">REGISTER</div>
+		<div id='button' class='button_cancel' (click)="cancel()">CANCEL</div>
 	</div>
 </ion-content>

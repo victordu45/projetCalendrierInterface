@@ -17,7 +17,8 @@ export class RegisterPage implements OnInit {
   surname = "";
   mail = "";
   gender = "";
-  errorMsg = "";
+  errLogin = "";
+  errMail = "";
   adresse = false;
   color = "";
  
@@ -38,6 +39,10 @@ export class RegisterPage implements OnInit {
   onNameKey(event) {this.name = event.target.value;}
   onSurnameKey(event) {this.surname = event.target.value;}
  
+  cancel(){
+    this.router.navigateByUrl('/home');
+  }
+
 
   register() {
     let colorPicker = document.querySelector(".colorPicker");
@@ -62,7 +67,12 @@ export class RegisterPage implements OnInit {
           this.router.navigateByUrl('/home');
         }
         else{
-          this.errorMsg = data['result']; 
+          if(data['Login'] == 'Erreur'){
+            this.errLogin = 'Login déjà utilisé';
+          }
+          if(data['Mail'] == 'Erreur'){
+            this.errMail = 'Un compte est déjà attribué à cette adresse mail';
+          } 
         }
       }
     )

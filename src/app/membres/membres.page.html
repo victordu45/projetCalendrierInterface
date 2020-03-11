@@ -3,17 +3,26 @@
     <ion-back-button slot="start">
     </ion-back-button>
     <ion-title>Membres</ion-title>
+    <div *ngIf="bool;">
+      <ion-button slot="end" (click)="valider()">Valider</ion-button>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div *ngIf="condition == 1; then thenBlock else elseBlock"></div>
+  <div *ngIf="bool; then thenBlock else elseBlock"></div>
   <ng-template #thenBlock>
-    <!--<div *ngFor="let i of membres">-->
-      <ion-item-sliding (click)="redirect(i)">
+    <div *ngFor="let i of membres">
+      <ion-item-sliding (click)="supp(i)">
         <ion-item>
-          <h2>Coucou</h2>
-          <ion-toggle slot="end" color="success" checked></ion-toggle>
+          <h2>{{i}}</h2>
+          <div *ngIf="memberWithWritable[i]; then a else b"></div>
+          <ng-template #a>
+            <ion-toggle slot="end" color="success" (ionChange)="test(i)" checked></ion-toggle>
+          </ng-template>
+          <ng-template #b>
+            <ion-toggle slot="end" color="success" (ionChange)="test(i)"></ion-toggle>
+          </ng-template>
         </ion-item>
         <ion-item-options side="start">
           <ion-item-option (click)="delete(i)" color="danger" expandable>
@@ -21,13 +30,13 @@
           </ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
-    <!--</div>-->
+    </div>
     </ng-template>
     <ng-template #elseBlock>
-      <!--<div *ngFor="let i of membres">-->
+      <div *ngFor="let i of membres">
         <ion-item>
-          <h2>Coucou</h2>
+          <h2>{{i}}</h2>
         </ion-item>
-      <!--</div>-->
+      </div>
     </ng-template>
 </ion-content>
