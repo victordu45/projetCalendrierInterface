@@ -1,0 +1,192 @@
+Date : 2020-03-13 16:54:39
+Directory : d:\Quebec\UQAC\Projet\projetCalendrierInterface
+Total : 129 files,  19090 codes, 401 comments, 579 blanks, all 20070 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JSON       |         14 |     15,940 |         81 |         10 |     16,031 |
+| TypeScript |         69 |      1,935 |        200 |        436 |      2,571 |
+| HTML       |         17 |        608 |         14 |         46 |        668 |
+| SCSS       |         18 |        348 |         87 |         51 |        486 |
+| XML        |          6 |        158 |          2 |          6 |        166 |
+| JavaScript |          2 |         52 |          4 |          5 |         61 |
+| Swift      |          1 |         41 |         13 |         21 |         75 |
+| Markdown   |          2 |          8 |          0 |          4 |         12 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                          | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                             |        129 |     19,090 |        401 |        579 |     20,070 |
+| e2e                                                                                                           |          4 |         57 |          2 |         11 |         70 |
+| e2e\src                                                                                                       |          2 |         20 |          0 |          7 |         27 |
+| ios                                                                                                           |          8 |        254 |         15 |         25 |        294 |
+| ios\App                                                                                                       |          8 |        254 |         15 |         25 |        294 |
+| ios\App\App                                                                                                   |          8 |        254 |         15 |         25 |        294 |
+| ios\App\App\Assets.xcassets                                                                                   |          3 |        145 |          0 |          0 |        145 |
+| ios\App\App\Assets.xcassets\AppIcon.appiconset                                                                |          1 |        116 |          0 |          0 |        116 |
+| ios\App\App\Assets.xcassets\Splash.imageset                                                                   |          1 |         23 |          0 |          0 |         23 |
+| ios\App\App\Base.lproj                                                                                        |          2 |         46 |          2 |          2 |         50 |
+| resources                                                                                                     |          2 |         12 |          0 |          4 |         16 |
+| resources\android                                                                                             |          1 |          6 |          0 |          1 |          7 |
+| resources\android\xml                                                                                         |          1 |          6 |          0 |          1 |          7 |
+| src                                                                                                           |        103 |      2,872 |        301 |        527 |      3,700 |
+| src\app                                                                                                       |         93 |      2,747 |        200 |        480 |      3,427 |
+| src\app\ajoutdepense                                                                                          |          4 |         32 |          0 |         13 |         45 |
+| src\app\calend-list                                                                                           |          6 |        250 |         14 |         39 |        303 |
+| src\app\calendar                                                                                              |          6 |        439 |        140 |         56 |        635 |
+| src\app\chat                                                                                                  |          6 |        197 |          1 |         51 |        249 |
+| src\app\event                                                                                                 |          6 |        281 |          7 |         35 |        323 |
+| src\app\home                                                                                                  |          5 |        189 |         30 |         30 |        249 |
+| src\app\infolist                                                                                              |          6 |        136 |          0 |         19 |        155 |
+| src\app\infos                                                                                                 |          6 |        117 |          0 |         21 |        138 |
+| src\app\membres                                                                                               |          6 |        161 |          0 |         31 |        192 |
+| src\app\modifinfolist                                                                                         |          6 |        119 |          0 |         24 |        143 |
+| src\app\newevent                                                                                              |          6 |        148 |          0 |         23 |        171 |
+| src\app\register                                                                                              |          6 |        218 |          7 |         38 |        263 |
+| src\app\register-calendar                                                                                     |          6 |        133 |          0 |         26 |        159 |
+| src\app\setting                                                                                               |          6 |         90 |          0 |         25 |        115 |
+| src\app\settinglist                                                                                           |          6 |         85 |          0 |         25 |        110 |
+| src\assets                                                                                                    |          1 |          1 |          0 |          1 |          2 |
+| src\environments                                                                                              |          2 |          7 |         11 |          4 |         22 |
+| src\theme                                                                                                     |          1 |         62 |         12 |         11 |         85 |
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                      | language   | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\README.md                                                     | Markdown   |          2 |          0 |          1 |          3 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\angular.json                                                  | JSON       |        107 |         81 |          0 |        188 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\capacitor.config.json                                         | JSON       |         19 |          0 |          1 |         20 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\config.xml                                                    | XML        |        102 |          0 |          1 |        103 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\e2e\protractor.conf.js                                        | JavaScript |         24 |          2 |          3 |         29 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\e2e\src\app.e2e-spec.ts                                       | TypeScript |         11 |          0 |          4 |         15 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\e2e\src\app.po.ts                                             | TypeScript |          9 |          0 |          3 |         12 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\e2e\tsconfig.json                                             | JSON       |         13 |          0 |          1 |         14 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\ionic.config.json                                             | JSON       |          8 |          0 |          1 |          9 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\ios\App\App\AppDelegate.swift                                 | Swift      |         41 |         13 |         21 |         75 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\ios\App\App\Assets.xcassets\AppIcon.appiconset\Contents.json  | JSON       |        116 |          0 |          0 |        116 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\ios\App\App\Assets.xcassets\Contents.json                     | JSON       |          6 |          0 |          0 |          6 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\ios\App\App\Assets.xcassets\Splash.imageset\Contents.json     | JSON       |         23 |          0 |          0 |         23 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\ios\App\App\Base.lproj\LaunchScreen.storyboard                | XML        |         28 |          1 |          1 |         30 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\ios\App\App\Base.lproj\Main.storyboard                        | XML        |         18 |          1 |          1 |         20 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\ios\App\App\capacitor.config.json                             | JSON       |         19 |          0 |          1 |         20 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\ios\App\App\config.xml                                        | XML        |          3 |          0 |          1 |          4 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\karma.conf.js                                                 | JavaScript |         28 |          2 |          2 |         32 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\package-lock.json                                             | JSON       |     15,384 |          0 |          1 |     15,385 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\package.json                                                  | JSON       |         98 |          0 |          1 |         99 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\resources\README.md                                           | Markdown   |          6 |          0 |          3 |          9 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\resources\android\xml\network_security_config.xml             | XML        |          6 |          0 |          1 |          7 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\ajoutdepense\ajoutdepense.component.html              | HTML       |          3 |          0 |          1 |          4 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\ajoutdepense\ajoutdepense.component.scss              | SCSS       |          0 |          0 |          1 |          1 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\ajoutdepense\ajoutdepense.component.spec.ts           | TypeScript |         19 |          0 |          6 |         25 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\ajoutdepense\ajoutdepense.component.ts                | TypeScript |         10 |          0 |          5 |         15 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\app-routing.module.ts                                 | TypeScript |         69 |          0 |          3 |         72 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\app.component.html                                    | HTML       |          3 |          0 |          1 |          4 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\app.component.scss                                    | SCSS       |          0 |          0 |          1 |          1 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\app.component.spec.ts                                 | TypeScript |         36 |          1 |         11 |         48 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\app.component.ts                                      | TypeScript |         24 |          0 |          4 |         28 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\app.module.ts                                         | TypeScript |         20 |          0 |          4 |         24 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\calend-list\calend-list-routing.module.ts             | TypeScript |         14 |          0 |          4 |         18 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\calend-list\calend-list.module.ts                     | TypeScript |         19 |          0 |          5 |         24 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\calend-list\calend-list.page.html                     | HTML       |         61 |          0 |          2 |         63 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\calend-list\calend-list.page.scss                     | SCSS       |          6 |          2 |          0 |          8 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\calend-list\calend-list.page.spec.ts                  | TypeScript |         19 |          0 |          6 |         25 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\calend-list\calend-list.page.ts                       | TypeScript |        131 |         12 |         22 |        165 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\calendar\calendar-routing.module.ts                   | TypeScript |         14 |          0 |          4 |         18 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\calendar\calendar.module.ts                           | TypeScript |         23 |          0 |          2 |         25 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\calendar\calendar.page.html                           | HTML       |         42 |          0 |          1 |         43 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\calendar\calendar.page.scss                           | SCSS       |         78 |         28 |          5 |        111 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\calendar\calendar.page.spec.ts                        | TypeScript |         19 |          0 |          6 |         25 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\calendar\calendar.page.ts                             | TypeScript |        263 |        112 |         38 |        413 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\chat\chat-routing.module.ts                           | TypeScript |         14 |          0 |          4 |         18 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\chat\chat.module.ts                                   | TypeScript |         22 |          0 |          3 |         25 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\chat\chat.page.html                                   | HTML       |         41 |          0 |          7 |         48 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\chat\chat.page.scss                                   | SCSS       |         30 |          0 |          6 |         36 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\chat\chat.page.spec.ts                                | TypeScript |         19 |          0 |          6 |         25 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\chat\chat.page.ts                                     | TypeScript |         71 |          1 |         25 |         97 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\event\event-routing.module.ts                         | TypeScript |         14 |          0 |          4 |         18 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\event\event.module.ts                                 | TypeScript |         19 |          0 |          5 |         24 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\event\event.page.html                                 | HTML       |        138 |          0 |          9 |        147 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\event\event.page.scss                                 | SCSS       |         27 |          7 |          1 |         35 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\event\event.page.spec.ts                              | TypeScript |         19 |          0 |          6 |         25 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\event\event.page.ts                                   | TypeScript |         64 |          0 |         10 |         74 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\home\home.module.ts                                   | TypeScript |         24 |          0 |          3 |         27 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\home\home.page.html                                   | HTML       |         24 |          8 |          2 |         34 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\home\home.page.scss                                   | SCSS       |         76 |         22 |          8 |        106 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\home\home.page.spec.ts                                | TypeScript |         19 |          0 |          6 |         25 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\home\home.page.ts                                     | TypeScript |         46 |          0 |         11 |         57 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\infolist\infolist-routing.module.ts                   | TypeScript |         14 |          0 |          4 |         18 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\infolist\infolist.module.ts                           | TypeScript |         19 |          0 |          2 |         21 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\infolist\infolist.page.html                           | HTML       |         47 |          0 |          1 |         48 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\infolist\infolist.page.scss                           | SCSS       |          0 |          0 |          1 |          1 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\infolist\infolist.page.spec.ts                        | TypeScript |         19 |          0 |          6 |         25 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\infolist\infolist.page.ts                             | TypeScript |         37 |          0 |          5 |         42 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\infos\infos-routing.module.ts                         | TypeScript |         14 |          0 |          4 |         18 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\infos\infos.module.ts                                 | TypeScript |         19 |          0 |          2 |         21 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\infos\infos.page.html                                 | HTML       |         32 |          0 |          1 |         33 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\infos\infos.page.scss                                 | SCSS       |          0 |          0 |          1 |          1 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\infos\infos.page.spec.ts                              | TypeScript |         19 |          0 |          6 |         25 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\infos\infos.page.ts                                   | TypeScript |         33 |          0 |          7 |         40 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\membres\membres-routing.module.ts                     | TypeScript |         14 |          0 |          4 |         18 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\membres\membres.module.ts                             | TypeScript |         19 |          0 |          4 |         23 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\membres\membres.page.html                             | HTML       |         41 |          0 |          2 |         43 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\membres\membres.page.scss                             | SCSS       |          0 |          0 |          1 |          1 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\membres\membres.page.spec.ts                          | TypeScript |         19 |          0 |          6 |         25 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\membres\membres.page.ts                               | TypeScript |         68 |          0 |         14 |         82 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\modifinfolist\modifinfolist-routing.module.ts         | TypeScript |         14 |          0 |          4 |         18 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\modifinfolist\modifinfolist.module.ts                 | TypeScript |         19 |          0 |          4 |         23 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\modifinfolist\modifinfolist.page.html                 | HTML       |         32 |          0 |          2 |         34 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\modifinfolist\modifinfolist.page.scss                 | SCSS       |          0 |          0 |          1 |          1 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\modifinfolist\modifinfolist.page.spec.ts              | TypeScript |         19 |          0 |          6 |         25 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\modifinfolist\modifinfolist.page.ts                   | TypeScript |         35 |          0 |          7 |         42 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\newevent\newevent-routing.module.ts                   | TypeScript |         14 |          0 |          4 |         18 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\newevent\newevent.module.ts                           | TypeScript |         19 |          0 |          5 |         24 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\newevent\newevent.page.html                           | HTML       |         32 |          0 |          2 |         34 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\newevent\newevent.page.scss                           | SCSS       |          0 |          0 |          1 |          1 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\newevent\newevent.page.spec.ts                        | TypeScript |         19 |          0 |          6 |         25 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\newevent\newevent.page.ts                             | TypeScript |         64 |          0 |          5 |         69 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\register-calendar\register-calendar-routing.module.ts | TypeScript |         14 |          0 |          4 |         18 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\register-calendar\register-calendar.module.ts         | TypeScript |         21 |          0 |          4 |         25 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\register-calendar\register-calendar.page.html         | HTML       |         22 |          0 |          1 |         23 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\register-calendar\register-calendar.page.scss         | SCSS       |          9 |          0 |          0 |          9 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\register-calendar\register-calendar.page.spec.ts      | TypeScript |         19 |          0 |          6 |         25 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\register-calendar\register-calendar.page.ts           | TypeScript |         48 |          0 |         11 |         59 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\register\register-routing.module.ts                   | TypeScript |         14 |          0 |          4 |         18 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\register\register.module.ts                           | TypeScript |         21 |          0 |          5 |         26 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\register\register.page.html                           | HTML       |         37 |          5 |          3 |         45 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\register\register.page.scss                           | SCSS       |         49 |          2 |          7 |         58 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\register\register.page.spec.ts                        | TypeScript |         19 |          0 |          6 |         25 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\register\register.page.ts                             | TypeScript |         78 |          0 |         13 |         91 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\setting\setting-routing.module.ts                     | TypeScript |         14 |          0 |          4 |         18 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\setting\setting.module.ts                             | TypeScript |         16 |          0 |          5 |         21 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\setting\setting.page.html                             | HTML       |         17 |          0 |          2 |         19 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\setting\setting.page.scss                             | SCSS       |          0 |          0 |          1 |          1 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\setting\setting.page.spec.ts                          | TypeScript |         19 |          0 |          6 |         25 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\setting\setting.page.ts                               | TypeScript |         24 |          0 |          7 |         31 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\settinglist\settinglist-routing.module.ts             | TypeScript |         14 |          0 |          4 |         18 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\settinglist\settinglist.module.ts                     | TypeScript |         16 |          0 |          5 |         21 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\settinglist\settinglist.page.html                     | HTML       |         17 |          0 |          1 |         18 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\settinglist\settinglist.page.scss                     | SCSS       |          0 |          0 |          1 |          1 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\settinglist\settinglist.page.spec.ts                  | TypeScript |         19 |          0 |          6 |         25 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\app\settinglist\settinglist.page.ts                       | TypeScript |         19 |          0 |          8 |         27 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\assets\shapes.svg                                         | XML        |          1 |          0 |          1 |          2 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\environments\environment.prod.ts                          | TypeScript |          3 |          0 |          1 |          4 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\environments\environment.ts                               | TypeScript |          4 |         11 |          3 |         18 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\global.scss                                               | SCSS       |         11 |         14 |          4 |         29 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\index.html                                                | HTML       |         19 |          1 |          8 |         28 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\main.ts                                                   | TypeScript |          9 |          0 |          4 |         13 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\polyfills.ts                                              | TypeScript |          2 |         55 |         10 |         67 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\test.ts                                                   | TypeScript |         13 |          4 |          4 |         21 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\theme\variables.scss                                      | SCSS       |         62 |         12 |         11 |         85 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\src\zone-flags.ts                                             | TypeScript |          1 |          4 |          1 |          6 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\tsconfig.app.json                                             | JSON       |         14 |          0 |          1 |         15 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\tsconfig.json                                                 | JSON       |         26 |          0 |          1 |         27 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\tsconfig.spec.json                                            | JSON       |         19 |          0 |          1 |         20 |
+| d:\Quebec\UQAC\Projet\projetCalendrierInterface\tslint.json                                                   | JSON       |         88 |          0 |          1 |         89 |
+| Total                                                                                                         |            |     19,090 |        401 |        579 |     20,070 |
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

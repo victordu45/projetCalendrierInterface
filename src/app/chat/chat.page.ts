@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpClientModule, HttpHeaderResponse } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { Socket } from 'ngx-socket-io';
+import { ToastController } from '@ionic/angular';
 
 @Component({
 	selector: 'app-chat',
@@ -9,118 +9,88 @@ import { environment } from 'src/environments/environment';
 })
 export class ChatPage implements OnInit {
 
-	constructor(private http: HttpClient) { }
 
-	calendar = null;
-	id = null;
-	chat = "";
-	chats;
-	offsetMessage = -1;
-	onChatKey(event) { this.chat = event.target.value; }
-	uniqueID = localStorage.getItem('uniqueID');
-	nombre = 0
-
+	titrePageMessage = '';
+	message = '';
+	messages = [];
+	room = `room1`;
+	user = '';
+  
+	isConnected = true;
+	constructor(private socket: Socket, private toastCtrl: ToastController) {
+	}
+  
 	ngOnInit() {
-		this.calendar = JSON.parse(localStorage.getItem('calendar'));
-		this.id = "Chat de " + this.calendar['nomCalendrier'];
-		this.getMessages();
-		// setInterval(() => { 
-		// 	this.myTimer(); // Now the "this" still references the component
-		//  }, 1000);
-		let chat = document.querySelector("ion-content");
-		chat.scrollToBottom(1000);
-	}
+	  console.log("demarrage du socket")
+  
+  
+	  this.user = localStorage.getItem('uniqueID');
 
-	loadData(event) {
-		this.getMessages();
-		setTimeout(() => {
-			console.log('Done');
-			event.target.complete();
-			
-			// App logic to determine if all data is loaded
-			// and disable the infinite scroll
-			//   if (data.length == 1000) {
-			// 	event.target.disabled = true;
-			//   }
-		}, 500);
-	}
+	  this.socket.connect();
+	  this.room = localStorage.getItem('idCalendrier');
 
 
-	send() {
-		let json = {
-			uniqueID: localStorage.getItem('uniqueID'),
-			contenu: this.chat,
-			idCalendrier: this.calendar['idCalendrier']
+  
+	  console.log("nom user", this.user)
+	  this.socket.emit('join', { "username": this.user, "room": this.room });
+  
+	  this.socket.fromEvent('users-changed').subscribe(data => {
+		let user = data['user'];
+		if (data['event'] === 'left') {
+		  this.showToast('User left: ' + user);
+		} else {
+		  this.showToast('User joined: ' + user);
 		}
-		let httpoption = {
-			headers: new HttpHeaders({
-				'Content-Type': 'application/json',
-				'Access-Control-Allow-Origin': '*'
-			})
-		};
-		this.http.post(environment.adressePython + '/createMessage', json, httpoption).subscribe(
-			data => {
-				this.getMessages();
-				// let chat = document.querySelector("ion-content");
-				// chat.scrollToBottom(3000);
-			})
+	  });
+  
+	  this.socket.fromEvent('message').subscribe(message => {
+		this.messages.push(message);
+		console.log(this.messages);
+	  });
+  
 	}
-	myTimer() {
-		this.getMessages();
-		// console.log("dans timer");
+  
+	sendMessage() {
+	  this.socket.emit('message', { msg: this.message, user: this.user, room: this.room });
+	  this.message = '';
 	}
-
-	getMessages() {
-		let json = {
-			uniqueID: localStorage.getItem('uniqueID'),
-			offset: this.offsetMessage,
-			idCalendrier: this.calendar['idCalendrier']
+  
+	ionViewDidEnter() {
+	  //définition des paramêtres 
+		this.socket.connect()            
+		this.socket.emit('join', { "username": this.user, "room": this.room });
+		this.isConnected=true;
+	 }
+  
+  
+  
+	ionViewDidLeave() {
+	  this.socket.emit('left', { "username": this.user, "room": this.room });
+	  this.socket.disconnect();
+	  console.log("on quitte la page 1")
+	  this.isConnected= false;
+	}
+  
+	async showToast(msg) {
+	  let toast = await this.toastCtrl.create({
+		message: msg,
+		position: 'top',
+		duration: 1000
+	  });
+	  toast.present();
+	}
+	hexToRGB(hex, alpha) {
+		var r = parseInt(hex.slice(1, 3), 16),
+			g = parseInt(hex.slice(3, 5), 16),
+			b = parseInt(hex.slice(5, 7), 16);
+	
+		if (alpha) {
+			return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
+		} else {
+			return "rgb(" + r + ", " + g + ", " + b + ")";
 		}
-		let httpoption = {
-			headers: new HttpHeaders({
-				'Content-Type': 'application/json',
-				'Access-Control-Allow-Origin': '*'
-			})
-		};
-		this.http.post(environment.adressePython + '/getMessages', json, httpoption).subscribe(
-			data => {
-				// console.log(data);
-				if (!('vide' in data)) {
-					this.chats = [];
-					for (let i in data) {
-						let msg = data[i];
-						this.offsetMessage = msg["offset"];
-
-						if (msg['idUtilisateur'] == localStorage.getItem("uniqueID")) {
-							msg['class'] = "own";
-							msg['color'] = hexToRGB(msg['color'], 0.5);
-						}
-						else {
-							// console.log("else else");
-							msg['class'] = "other";
-							msg['color'] = "rgb(241,239,240)";
-						}
-						this.chats.push(msg);
-					}
-				}
-				else {
-					console.log("pas de msg dans le chat");
-				}
-
-			})
 	}
-
-}
-function hexToRGB(hex, alpha) {
-	var r = parseInt(hex.slice(1, 3), 16),
-		g = parseInt(hex.slice(3, 5), 16),
-		b = parseInt(hex.slice(5, 7), 16);
-
-	if (alpha) {
-		return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
-	} else {
-		return "rgb(" + r + ", " + g + ", " + b + ")";
-	}
-}
+  }
+  
 
 
