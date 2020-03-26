@@ -15,6 +15,7 @@ export class ChatPage implements OnInit {
 	messages = [];
 	room = `room1`;
 	user = '';
+	calendar:any;
   
 	isConnected = true;
 	constructor(private socket: Socket, private toastCtrl: ToastController) {
@@ -27,10 +28,11 @@ export class ChatPage implements OnInit {
 	  this.user = localStorage.getItem('uniqueID');
 
 	  this.socket.connect();
-	  this.room = localStorage.getItem('idCalendrier');
+	  this.calendar = JSON.parse(localStorage.getItem('calendar'));
+	  console.log(this.calendar)
+	  this.room = this.calendar.idCalendrier;
 
-
-  
+	   
 	  console.log("nom user", this.user)
 	  this.socket.emit('join', { "username": this.user, "room": this.room });
   
@@ -61,9 +63,7 @@ export class ChatPage implements OnInit {
 		this.socket.emit('join', { "username": this.user, "room": this.room });
 		this.isConnected=true;
 	 }
-  
-  
-  
+
 	ionViewDidLeave() {
 	  this.socket.emit('left', { "username": this.user, "room": this.room });
 	  this.socket.disconnect();
@@ -71,6 +71,10 @@ export class ChatPage implements OnInit {
 	  this.isConnected= false;
 	}
   
+	getMessages(i){
+		//récupération des 10messages suivants l'indice i, en effectuant une requête au serveur REST
+	}
+
 	async showToast(msg) {
 	  let toast = await this.toastCtrl.create({
 		message: msg,
