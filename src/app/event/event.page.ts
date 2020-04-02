@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { AjoutdepenseComponent } from '../ajoutdepense/ajoutdepense.component';
 
+
 @Component({
 	selector: 'app-event',
 	templateUrl: './event.page.html',
@@ -57,6 +58,28 @@ export class EventPage implements OnInit {
 				console.log(data);
 			}
 		)
+	}
+	async presentAlertMultipleButtons() {
+		const alert = await this.alertController.create({
+			header: 'Delete event',
+			buttons: [
+				{
+					text: 'Cancel',
+					role: 'cancel',
+					cssClass: 'secondary',
+					handler: (blah) => {
+						console.log('Confirm Cancel: blah');
+					}
+				}, {
+					text: 'DELETE',
+					handler: () => {
+						console.log('Confirm Okay');
+					}
+				}
+			]
+		});
+
+		await alert.present();
 	}
 	back() {
 		this.router.navigateByUrl("/calendar");
