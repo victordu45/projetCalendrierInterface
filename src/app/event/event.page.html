@@ -1,15 +1,49 @@
 <div *ngIf="condition == 0; then thenBlock else elseBlock"></div>
 <ng-template #thenBlock>
-	<ion-header>
+	<!-- <ion-header>
 		<ion-toolbar>
 			<ion-buttons slot="start">
 				<ion-back-button></ion-back-button>
 			</ion-buttons>
 			<ion-title>Événement</ion-title>
 		</ion-toolbar>
-	</ion-header>
+	</ion-header> -->
+	
+
 	<ion-content>
-		<ion-card>
+		<div class='event'>
+			<div  id="backbutton" (click)="back()"><i class="fas fa-arrow-left"></i></div>
+			<div class='header' [ngStyle]="{'background-color' : data.couleurThemeRgba }">
+				
+				<div class='container'>
+					<div class='name'>{{data["nomEvenement"]}}</div>
+					<div class='date'>{{data['dateDebut']}} {{data['heureDebut']}} | {{data['dateFin']}}
+						{{data['heureFin']}}</div>
+				</div>
+			</div>
+			<div id='description' class='ligne'>
+				{{data['description']}}
+			</div>
+			<div id='location' class='ligne'>
+				<div>Location</div>
+				<div>Paris</div>
+			</div>
+			<div class='bottom-nav'>
+				<div class='option' (click)="ajouter()">
+					<div class='icon'><i class="fas fa-file-invoice"></i></div>
+					<div class='text'>Add expenditure</div>
+				</div>
+				<div class='option' (click)="modifier()">
+					<div class='icon'><i class='far fa-file'></i></div>
+					<div class='text'>Edit</div>
+				</div>
+				<div class='option' (click)="delete()">
+					<div class='icon'><i class='far fa-trash-alt'></i></div>
+					<div class='text'>Delete</div>
+				</div>
+			</div>
+		</div>
+		<!-- <ion-card>
 			<ion-card-header>
 				<ion-card-subtitle>{{data["idEvent"]}}</ion-card-subtitle>
 				<ion-card-title>{{data["nomEvenement"]}}</ion-card-title>
@@ -43,11 +77,11 @@
 				<ion-label>Heure fin :</ion-label>
 				<ion-label>{{data['heureFin']}}</ion-label>
 			</ion-item>
-		</ion-card>
-		<ion-item>
+		</ion-card>-->
+		<!-- <ion-item>
 			<ion-button (click)="modifier()">Modifier</ion-button>
 			<ion-button (click)="ajouter()">Ajouter dépense</ion-button>
-		</ion-item>
+		</ion-item> -->
 		<ion-list>
 			<ion-item>
 				<div class='depenses'>

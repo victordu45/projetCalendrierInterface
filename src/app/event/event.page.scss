@@ -27,9 +27,106 @@
     font-weight: bold;
 }
 .payeur, .date {
-    color: grey;
-    font-size: 0.8em;
+    // color: grey;
+    // font-size: 0.8em;
 }
 .payeur span {
     font-weight: bold;
+}
+
+.event {
+    /* border: 1px solid red; */
+    font-family: 'Roboto';
+    font-size: 1em;
+}
+.event .header {
+    /* border: 1px solid blue; */
+    // background-color:rgba(209, 84, 70,0.2);
+    height: 8em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+#backbutton {
+    position: absolute;
+    font-size: 1.5em;
+    left: 0.3em;
+    top: 0.2em;
+    // border: 1Px solid red;
+}
+#backbutton:hover {
+    cursor: pointer;
+}
+.event .header .container {
+    /* border: 1px solid red; */
+    padding: 0.5em;
+    
+}
+.event .header .container .name  {
+    font-weight: bold;
+    font-size: 1.8em;
+}
+.event .header .date {
+    font-size: 0.7em;
+}
+.event #description {
+    /* height: 10em; */
+    max-height: 10em;
+    overflow-y: auto;
+}
+
+.event .ligne {
+    border-bottom: 1px solid rgb(247,248,246);
+    padding: 0.5em;
+}
+.event #location {
+    display: flex;
+    flex-direction: row;
+}
+#location div {
+    width: 50%;
+}
+#location div:nth-child(1) {
+    text-align: left;
+}
+#location div:nth-child(2) {
+    text-align: right;
+}
+.event .bottom-nav {
+    /* border: 1px solid red; */
+    height: 3.5em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: rgb(247,248,246);
+}
+.bottom-nav .option {
+    // border: 1px solid red;
+    // width: 3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 0.5em 0 0.5em;
+}
+.bottom-nav .option div:nth-child(1) {
+    /* border: 1px solid red; */
+    /* text-align: center; */
+    font-size: 1.3em;
+}
+.bottom-nav .option div:nth-child(1) i {
+    /* border: 1px solid red; */
+    position: relative;
+    transform: translateX(-50%);
+    left: 50%;
+}
+.bottom-nav .option div:nth-child(2) {
+    font-size: 0.7em;
+    text-align: center;
+}
+.bottom-nav .option:hover {
+    color: rgb(7,102,230);
+    cursor: pointer;
 }
