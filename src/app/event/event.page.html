@@ -28,21 +28,20 @@
 				<div>Location</div>
 				<div>Paris</div>
 			</div>
-			<div class='bottom-nav'>
-				<div class='option' (click)="ajouter()">
-					<div class='icon'><i class="fas fa-file-invoice"></i></div>
-					<div class='text'>Add expenditure</div>
+			<div class='navExpenses'>
+				<div>
+					<div class='title'>MY TOTAL</div>
+					<div class='amount'>CA$2500</div>
 				</div>
-				<div class='option' (click)="modifier()">
-					<div class='icon'><i class='far fa-file'></i></div>
-					<div class='text'>Edit</div>
-				</div>
-				<div class='option' (click)="presentAlertMultipleButtons()">
-					<div class='icon'><i class='far fa-trash-alt'></i></div>
-					<div class='text'>Delete</div>
+				<div>
+					<div class='title'>TOTAL</div>
+					<div class='amount'>CA$3521</div>
 				</div>
 			</div>
+			<div id="addExpense" (click)="ajouter()"><i class='fas fa-plus'></i></div>
+			
 		</div>
+		
 		<!-- <ion-card>
 			<ion-card-header>
 				<ion-card-subtitle>{{data["idEvent"]}}</ion-card-subtitle>
@@ -82,48 +81,114 @@
 			<ion-button (click)="modifier()">Modifier</ion-button>
 			<ion-button (click)="ajouter()">Ajouter dépense</ion-button>
 		</ion-item> -->
-		<ion-list>
-			<ion-item>
-				<div class='depenses'>
-					<div class='ligne'>
-						<div class='titre'>
-							<p>Walmart</p>
+		<ion-list id="expenses">
+			<ion-item-sliding>
+				<ion-item>
+					<div class='depenses'>
+						<div class='ligne'>
+							<div class='titre'>
+								<p>Walmart</p>
+							</div>
+							<div class="prix">
+								<p>30,00 $CA</p>
+							</div>
 						</div>
-						<div class="prix">
-							<p>30,00 $CA</p>
-						</div>
-					</div>
-					<div class='ligne'>
-						<div class="payeur">
-							<p>Payé par <span>Baptiste</span></p>
-						</div>
-						<div class="date">
-							<p>28/03/2020</p>
-						</div>
-					</div>
-				</div>
-			</ion-item>
-			<ion-item>
-				<div class='depenses'>
-					<div class='ligne'>
-						<div class='titre'>
-							<p>Walmart</p>
-						</div>
-						<div class="prix">
-							<p>30,00 $CA</p>
+						<div class='ligne'>
+							<div class="payeur">
+								<p>Payé par <span>Baptiste</span></p>
+							</div>
+							<div class="date">
+								<p>28/03/2020</p>
+							</div>
 						</div>
 					</div>
-					<div class='ligne'>
-						<div class="payeur">
-							<p>Payé par <span>Baptiste</span></p>
-						</div>
-						<div class="date">
-							<p>28/03/2020</p>
-						</div>
-					</div>
-				</div>
-			</ion-item>
+				</ion-item>
+				<ion-item-options side="start">
+					<ion-item-option (click)="delete(i)" color="danger" expandable>
+						<ion-icon slot="icon-only" name="trash"></ion-icon>
+					</ion-item-option>
+				</ion-item-options>
+			</ion-item-sliding>	
 		</ion-list>
+		<ion-list id="logs">
+			<div class='added'><strong>Baptiste</strong> added an <strong>CA$30</strong> expense : <strong>Walmart</strong></div>
+			<div class='removed'><strong>Baptiste</strong> removed an <strong>CA$30</strong>$30 expense : <strong>Walmart</strong></div>
+			<div class='updated'><strong>Baptiste</strong> updated an expense</div>
+			<div class='added'><strong>Baptiste</strong> added an <strong>CA$30</strong> expense : <strong>Walmart</strong></div>
+			<div class='removed'><strong>Baptiste</strong> removed an <strong>CA$30</strong>$30 expense : <strong>Walmart</strong></div>
+			<div class='updated'><strong>Baptiste</strong> updated an expense</div>
+			<div class='added'><strong>Baptiste</strong> added an <strong>CA$30</strong> expense : <strong>Walmart</strong></div>
+			<div class='removed'><strong>Baptiste</strong> removed an <strong>CA$30</strong>$30 expense : <strong>Walmart</strong></div>
+			<div class='updated'><strong>Baptiste</strong> updated an expense</div>
+			<div class='added'><strong>Baptiste</strong> added an <strong>CA$30</strong> expense : <strong>Walmart</strong></div>
+			<div class='removed'><strong>Baptiste</strong> removed an <strong>CA$30</strong>$30 expense : <strong>Walmart</strong></div>
+			<div class='updated'><strong>Baptiste</strong> updated an expense</div>
+			<div class='added'><strong>Baptiste</strong> added an <strong>CA$30</strong> expense : <strong>Walmart</strong></div>
+			<div class='removed'><strong>Baptiste</strong> removed an <strong>CA$30</strong>$30 expense : <strong>Walmart</strong></div>
+			<div class='updated'><strong>Baptiste</strong> updated an expense</div>
+			<div class='added'><strong>Baptiste</strong> added an <strong>CA$30</strong> expense : <strong>Walmart</strong></div>
+			<div class='removed'><strong>Baptiste</strong> removed an <strong>CA$30</strong>$30 expense : <strong>Walmart</strong></div>
+			<div class='updated'><strong>Baptiste</strong> updated an expense</div>
+			<div class='added'><strong>Baptiste</strong> added an <strong>CA$30</strong> expense : <strong>Walmart</strong></div>
+			<div class='removed'><strong>Baptiste</strong> removed an <strong>CA$30</strong>$30 expense : <strong>Walmart</strong></div>
+			<div class='updated'><strong>Baptiste</strong> updated an expense</div>
+			<div class='added'><strong>Baptiste</strong> added an <strong>CA$30</strong> expense : <strong>Walmart</strong></div>
+			<div class='removed'><strong>Baptiste</strong> removed an <strong>CA$30</strong>$30 expense : <strong>Walmart</strong></div>
+			<div class='updated'><strong>Baptiste</strong> updated an expense</div>
+			<div class='added'><strong>Baptiste</strong> added an <strong>CA$30</strong> expense : <strong>Walmart</strong></div>
+			<div class='removed'><strong>Baptiste</strong> removed an <strong>CA$30</strong>$30 expense : <strong>Walmart</strong></div>
+			<div class='updated'><strong>Baptiste</strong> updated an expense</div>
+			<div class='added'><strong>Baptiste</strong> added an <strong>CA$30</strong> expense : <strong>Walmart</strong></div>
+			<div class='removed'><strong>Baptiste</strong> removed an <strong>CA$30</strong>$30 expense : <strong>Walmart</strong></div>
+			<div class='updated'><strong>Baptiste</strong> updated an expense</div>
+			<div class='added'><strong>Baptiste</strong> added an <strong>CA$30</strong> expense : <strong>Walmart</strong></div>
+			<div class='removed'><strong>Baptiste</strong> removed an <strong>CA$30</strong>$30 expense : <strong>Walmart</strong></div>
+			<div class='updated'><strong>Baptiste</strong> updated an expense</div>
+			<div class='added'><strong>Baptiste</strong> added an <strong>CA$30</strong> expense : <strong>Walmart</strong></div>
+			<div class='removed'><strong>Baptiste</strong> removed an <strong>CA$30</strong>$30 expense : <strong>Walmart</strong></div>
+			<div class='updated'><strong>Baptiste</strong> updated an expense</div>
+			<div class='added'><strong>Baptiste</strong> added an <strong>CA$30</strong> expense : <strong>Walmart</strong></div>
+			<div class='removed'><strong>Baptiste</strong> removed an <strong>CA$30</strong>$30 expense : <strong>Walmart</strong></div>
+			<div class='updated'><strong>Baptiste</strong> updated an expense</div>
+			<div class='added'><strong>Baptiste</strong> added an <strong>CA$30</strong> expense : <strong>Walmart</strong></div>
+			<div class='removed'><strong>Baptiste</strong> removed an <strong>CA$30</strong>$30 expense : <strong>Walmart</strong></div>
+			<div class='updated'><strong>Baptiste</strong> updated an expense</div>
+			<div class='added'><strong>Baptiste</strong> added an <strong>CA$30</strong> expense : <strong>Walmart</strong></div>
+			<div class='removed'><strong>Baptiste</strong> removed an <strong>CA$30</strong>$30 expense : <strong>Walmart</strong></div>
+			<div class='updated'><strong>Baptiste</strong> updated an expense</div>
+			<div class='added'><strong>Baptiste</strong> added an <strong>CA$30</strong> expense : <strong>Walmart</strong></div>
+			<div class='removed'><strong>Baptiste</strong> removed an <strong>CA$30</strong>$30 expense : <strong>Walmart</strong></div>
+			<div class='updated'><strong>Baptiste</strong> updated an expense</div>
+			<div class='added'><strong>Baptiste</strong> added an <strong>CA$30</strong> expense : <strong>Walmart</strong></div>
+			<div class='removed'><strong>Baptiste</strong> removed an <strong>CA$30</strong>$30 expense : <strong>Walmart</strong></div>
+			<div class='updated'><strong>Baptiste</strong> updated an expense</div>
+			<div class='added'><strong>Baptiste</strong> added an <strong>CA$30</strong> expense : <strong>Walmart</strong></div>
+			<div class='removed'><strong>Baptiste</strong> removed an <strong>CA$30</strong>$30 expense : <strong>Walmart</strong></div>
+			<div class='updated'><strong>Baptiste</strong> updated an expense</div>
+			<div class='added'><strong>Baptiste</strong> added an <strong>CA$30</strong> expense : <strong>Walmart</strong></div>
+			<div class='removed'><strong>Baptiste</strong> removed an <strong>CA$30</strong>$30 expense : <strong>Walmart</strong></div>
+			<div class='updated'><strong>Baptiste</strong> updated an expense</div>
+			<div class='added'><strong>Baptiste</strong> added an <strong>CA$30</strong> expense : <strong>Walmart</strong></div>
+			<div class='removed'><strong>Baptiste</strong> removed an <strong>CA$30</strong>$30 expense : <strong>Walmart</strong></div>
+			<div class='updated'><strong>Baptiste</strong> updated an expense</div>
+			<div class='added'><strong>Baptiste</strong> added an <strong>CA$30</strong> expense : <strong>Walmart</strong></div>
+			<div class='removed'><strong>Baptiste</strong> removed an <strong>CA$30</strong>$30 expense : <strong>Walmart</strong></div>
+			<div class='updated'><strong>Baptiste</strong> updated an expense</div>
+		</ion-list>
+		<div class='bottom-nav'>
+			<div class='option' (click)="ajouter()">
+				<div class='icon'><i class="fas fa-file-invoice"></i></div>
+				<div class='text'>Add expense</div>
+			</div>
+			<div class='option' (click)="modifier()">
+				<div class='icon'><i class='far fa-file'></i></div>
+				<div class='text'>Edit</div>
+			</div>
+			<div class='option' (click)="presentAlertMultipleButtons()">
+				<div class='icon'><i class='far fa-trash-alt'></i></div>
+				<div class='text'>Delete</div>
+			</div>
+		</div>
 	</ion-content>
 </ng-template>
 

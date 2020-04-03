@@ -1,4 +1,10 @@
 
+#expenses {
+    margin : 0;
+    overflow-y: auto;
+    max-height: 20em;
+}
+
 .depenses {
     width: 100%;
     display: flex;
@@ -20,7 +26,7 @@
     height: 40px;
 }
 .titre, .prix {
-    color: blueviolet;
+    color: rgb(7,102,230);
     font-size: 1.1em;
 }
 .prix {
@@ -92,7 +98,69 @@
 #location div:nth-child(2) {
     text-align: right;
 }
-.event .bottom-nav {
+.navExpenses {
+    // border: 1px solid red;
+    margin-top: 3em;
+    padding: 0.5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgb(41, 53, 63);
+}
+.navExpenses .title {
+    color: rgb(77,85,93);
+    margin-bottom: 0.3em;
+}
+.navExpenses .amount {
+    color: white;
+    font-weight: bold;
+}
+#addExpense {
+    color: white;
+    background-color: rgb(7,102,230);
+    position: relative;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -2em;
+    width: 3.5em;
+    height: 3.5em;
+    margin:0;
+    border-radius: 50%;
+}
+#addExpense i {
+    // border: 1px solid red;
+    transform: translate(-50%,-50%);
+    font-size: 2em;
+    position: relative;
+    top: 50%;
+    left: 50%;
+}
+#addExpense:hover {
+    cursor: pointer;
+}
+
+#logs {
+    background: rgb(248,247,249) !important;
+    padding: 0.5em;
+    font-size: 0.7em;
+    font-family:  'Trebuchet MS';
+    overflow-y: auto;
+    max-height: 20em;
+    margin-top: 2em;
+    // font-style: italic;
+}
+#logs div {
+    padding: 0.2em 0em 0.2em 0em;
+}
+#logs .added {
+    color: rgb(47, 102, 47);
+}
+#logs .removed {
+    color: rgb(240, 68, 37);
+}
+
+
+.bottom-nav {
     /* border: 1px solid red; */
     height: 3.5em;
     position: fixed;

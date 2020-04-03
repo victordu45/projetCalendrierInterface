@@ -34,6 +34,9 @@ export class EventPage implements OnInit {
 	cancel() {
 		this.condition = 0;
 	}
+	delete(i) {
+		console.log("delete appuyé");
+	}
 
 	valider() {
 		let ion_datetime = document.querySelectorAll("ion-datetime");
