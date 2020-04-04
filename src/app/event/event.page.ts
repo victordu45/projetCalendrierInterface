@@ -36,6 +36,7 @@ export class EventPage implements OnInit {
 	}
 	delete(i) {
 		console.log("delete appuyé");
+		
 	}
 
 	valider() {
@@ -77,6 +78,26 @@ export class EventPage implements OnInit {
 					text: 'DELETE',
 					handler: () => {
 						console.log('Confirm Okay');
+						// console.log(this);
+						let json = {
+							idEvenement: this.data['idEvenement']
+						}
+						let httpoption = {
+							headers: new HttpHeaders({
+								'Content-Type': 'application/json',
+								'Access-Control-Allow-Origin': '*'
+							})
+						};
+						this.http.post(environment.adressePython + '/suppEvent', json, httpoption).subscribe(
+							data => {
+								console.log(data);
+								if (('result' in data)) {
+									if(data['result'] == "deleted") {
+										this.router.navigateByUrl("/calendar");
+									}
+								}
+							}
+						)
 					}
 				}
 			]
