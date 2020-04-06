@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class SettinglistPage implements OnInit {
 
   constructor(private router: Router) { }
-
+  
   logout() {
 		localStorage.clear();
 		this.router.navigateByUrl('/home');

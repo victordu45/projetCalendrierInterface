@@ -15,7 +15,6 @@ export class ModifinfolistPage implements OnInit {
   email = null;
   nom = null;
   prenom = null;
-
   ngOnInit() {
     let json = {
       uniqueID: localStorage.getItem('uniqueID')

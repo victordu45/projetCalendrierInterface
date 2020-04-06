@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class SettingPage implements OnInit {
 
   constructor(private router: Router) { }
-
+  
   redirect(nombre){
     if(nombre == 0){
       this.router.navigateByUrl('/infos');

@@ -11,17 +11,17 @@ import { AlertController, ModalController } from '@ionic/angular';
 })
 export class RegisterPage implements OnInit {
 
-	login = "";
-	password = "";
-	isConfirmed = false;
-	name = "";
-	surname = "";
-	mail = "";
-	gender = "";
-	errLogin = "";
-	errMail = "";
-	adresse = false;
-	color = "";
+  login = "";
+  password = "";
+  isConfirmed = false;
+  name = "";
+  surname = "";
+  mail = "";
+  gender = "";
+  errLogin = "";
+  errMail = "";
+  adresse = false;
+  color = "";
 
 
 	constructor(private http: HttpClient, private router: Router,public alertController: AlertController) { }

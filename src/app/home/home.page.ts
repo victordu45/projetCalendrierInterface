@@ -15,7 +15,7 @@ export class HomePage {
   password = '';
 
   errorMsg = '';
-
+  
   constructor(private http: HttpClient, private router: Router) { }
 
   onLoginKey(event) { this.user = event.target.value; }
