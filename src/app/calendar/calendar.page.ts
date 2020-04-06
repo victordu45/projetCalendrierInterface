@@ -151,11 +151,17 @@ export class CalendarPage implements OnInit {
 
 	changeValue(event) {
 		var varEvent = document.querySelector('ion-fab-button');
+		var jourNumbers = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"];
+		var moisNumbers = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
 		varEvent.setAttribute('value', event);
+		let theDay = new Date(Date.parse(event._d));
+		let day = theDay.getFullYear() + "-" + moisNumbers[theDay.getMonth()] + "-" + jourNumbers[theDay.getUTCDate()];
+		console.log(event, day);
 		let couleurTheme = localStorage.getItem("couleurTheme");
 		let json = {
 			uniqueID: localStorage.getItem('uniqueID'),
-			idCalendar: this.calendar['idCalendrier']
+			idCalendar: this.calendar['idCalendrier'],
+			aDay: day
 		}
 		let httpoption = {
 			headers: new HttpHeaders({
@@ -164,25 +170,27 @@ export class CalendarPage implements OnInit {
 			})
 		};
 
-		this.http.post(environment.adressePython + '/getEventsFromPersonalCalendar', json, httpoption).subscribe(
+		this.http.post(environment.adressePython + '/getEventsFromDay', json, httpoption).subscribe(
 			data => {
 				if (!('vide' in data)) {
 					this.evenements = [];
 					for (let i in data) {
 						let evenement = data[i];
+						console.log(evenement);
 						evenement['couleurThemeRgba'] = hexToRGB(evenement['couleurTheme'], 0.2);
 						evenement['couleurTheme'] = "5px solid " + evenement['couleurTheme'];
 						let debut = evenement['dateDebut'];
 						let fin = evenement['dateFin'];
 						evenement['heureDebut'] = debut.split(' ')[1]
 						evenement['heureFin'] = fin.split(' ')[1];
-						evenement['dateDebut'] = debut.split(' ')[0]
-						evenement['dateFin'] = fin.split(' ')[0]
+						evenement['dateDebut'] = debut.split(' ')[0];
+						evenement['dateFin'] = fin.split(' ')[0];
 						this.evenements.push(evenement);
 					}
 					// this.optionsMulti.daysConfig = this.daysConfig();
 				}
 				else {
+					this.evenements = [];
 					console.log(data);
 				}
 
@@ -312,6 +320,14 @@ export class CalendarPage implements OnInit {
 					this.evenements = [];
 					for (let i in data) {
 						let evenement = data[i];
+						evenement['couleurThemeRgba'] = hexToRGB(evenement['couleurTheme'], 0.2);
+						evenement['couleurTheme'] = "5px solid " + evenement['couleurTheme'];
+						let debut = evenement['dateDebut'];
+						let fin = evenement['dateFin'];
+						evenement['heureDebut'] = debut.split(' ')[1]
+						evenement['heureFin'] = fin.split(' ')[1];
+						evenement['dateDebut'] = debut.split(' ')[0]
+						evenement['dateFin'] = fin.split(' ')[0]
 						this.evenements.push(evenement);
 					}
 					// this.optionsMulti.daysConfig = this.daysConfig();
