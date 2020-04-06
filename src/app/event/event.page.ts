@@ -14,31 +14,31 @@ import { AjoutdepenseComponent } from '../ajoutdepense/ajoutdepense.component';
 })
 export class EventPage implements OnInit {
 
-  constructor(public modalController: ModalController, private route: ActivatedRoute, private router: Router, public alertController: AlertController, private http: HttpClient) { }
-  modal : any;
-  data: any;
-  condition = 0;
-  errorMsg;
-  currentModal : any;
-  
-  
-  ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      if (params && params.special) {
-        this.data = JSON.parse(params.special);
-      }
-    });
-    console.log(this.data["heureDebut"]);
-  }
-  modifier(){
-    this.condition = 1;
-  }
-  cancel(){
-    this.condition = 0;
-  }
+	constructor(public modalController: ModalController, private route: ActivatedRoute, private router: Router, public alertController: AlertController, private http: HttpClient) { }
+	modal: any;
+	data: any;
+	condition = 0;
+	errorMsg;
+	currentModal: any;
+
+
+	ngOnInit() {
+		this.route.queryParams.subscribe(params => {
+			if (params && params.special) {
+				this.data = JSON.parse(params.special);
+			}
+		});
+		console.log(this.data["heureDebut"]);
+	}
+	modifier() {
+		this.condition = 1;
+	}
+	cancel() {
+		this.condition = 0;
+	}
 	delete(i) {
 		console.log("delete appuyé");
-		
+
 	}
 
 
@@ -95,7 +95,7 @@ export class EventPage implements OnInit {
 							data => {
 								console.log(data);
 								if (('result' in data)) {
-									if(data['result'] == "deleted") {
+									if (data['result'] == "deleted") {
 										this.router.navigateByUrl("/calendar");
 									}
 								}
@@ -112,13 +112,13 @@ export class EventPage implements OnInit {
 		this.router.navigateByUrl("/calendar");
 	}
 
-  async ajouter() {
-    this.modal = await this.modalController.create({
-      component: AjoutdepenseComponent,
-    });
-    return await this.modal.present();
-    this.currentModal = this.modal;
-  }
+	async ajouter() {
+		this.modal = await this.modalController.create({
+			component: AjoutdepenseComponent,
+		});
+		return await this.modal.present();
+		this.currentModal = this.modal;
+	}
 
 	ionViewWillLeave() {
 		console.log("Mettre l'alert ici")

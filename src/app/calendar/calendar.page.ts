@@ -58,6 +58,7 @@ export class CalendarPage implements OnInit {
 					for (let i in data) {
 						let evenement = data[i];
 						this.evenements.push(evenement);
+
 						console.log("in daysConfigs");
 						if (typeof this.evenements != "undefined") {
 							// console.log(this.evenements.length);
