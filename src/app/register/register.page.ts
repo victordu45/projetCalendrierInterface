@@ -21,7 +21,6 @@ export class RegisterPage implements OnInit {
   errMail = "";
   adresse = false;
   color = "";
- 
 
   constructor(private http: HttpClient, private router: Router) { }
 

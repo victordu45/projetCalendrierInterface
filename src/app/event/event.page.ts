@@ -14,10 +14,12 @@ import { AjoutdepenseComponent } from '../ajoutdepense/ajoutdepense.component';
 export class EventPage implements OnInit {
 
   constructor(public modalController: ModalController, private route: ActivatedRoute, private router: Router, public alertController: AlertController, private http: HttpClient) { }
-
+  modal : any;
   data: any;
   condition = 0;
   errorMsg;
+  currentModal : any;
+  
   
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -60,10 +62,11 @@ export class EventPage implements OnInit {
 
 
   async ajouter() {
-    const modal = await this.modalController.create({
+    this.modal = await this.modalController.create({
       component: AjoutdepenseComponent,
     });
-    return await modal.present();
+    return await this.modal.present();
+    this.currentModal = this.modal;
   }
 
   ionViewWillLeave() {
