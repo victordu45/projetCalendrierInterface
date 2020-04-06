@@ -4,7 +4,9 @@
 //sqdlkksq
 export const environment = {
   production: false,
-  adressePython: 'http://localhost:5000'
+
+  adressePython: 'http://192.168.1.59:5000'
+
 };
 
 /*

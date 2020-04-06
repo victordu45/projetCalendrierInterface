@@ -5,6 +5,9 @@ import { IonicModule } from '@ionic/angular';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ChatPageRoutingModule } from './chat-routing.module';
 import { ChatPage } from './chat.page';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: 'http://192.168.0.145:5000', options: {} };
+
 
 @NgModule({
   imports: [
@@ -12,7 +15,8 @@ import { ChatPage } from './chat.page';
     FormsModule,
     IonicModule,
     ChatPageRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SocketIoModule.forRoot(config)
   ],
   declarations: [ChatPage],
   providers:[HttpClient]
