@@ -2,9 +2,12 @@
 	<ion-toolbar>
 		<ion-back-button slot="start">
 		</ion-back-button>
-		<ion-title>{{id}}</ion-title>
+	  <ion-title>
+		{{calendar.nomCalendrier}}
+	  </ion-title>
 	</ion-toolbar>
-</ion-header>
+  </ion-header>
+   
 
 <ion-content>
 	<ion-infinite-scroll threshold="2%" (ionInfinite)="loadData($event)" position="top">
