@@ -17,8 +17,10 @@ export class AjoutdepenseComponent implements OnInit {
 	titre: string;
 	montant: number;
 	idEvenement: string;
+	currency = "cad";
 	checked = [];
 	membres = [];
+	cocher = 1;
 	calendName: any;
 	ngOnInit() {
 		this.route.queryParams.subscribe(params => {
@@ -42,13 +44,16 @@ export class AjoutdepenseComponent implements OnInit {
 		}
 		this.http.post(environment.adressePython + '/getMembersWritable', json2, httpoption).subscribe(
 			data => {
-				console.log(data);
+				// console.log(data);
 				let membre;
 				for (let [name, permission] of Object.entries(data)) {
-					console.log(name, permission);
+					// console.log(name, permission);
 					membre = { 'name': name, 'permission': permission };
+					this.membres.push(membre);
 				}
-				this.membres.push(membre);
+				
+				
+
 			})
 	}
 
@@ -67,21 +72,64 @@ export class AjoutdepenseComponent implements OnInit {
 		else {
 			boxChanged.permission = true;
 		}
+		this.onChangeAmount();
+		// console.log(this.membres);
 	}
-	check(cocher) {
-		console.log("cocher click " + cocher);
-		let checkbox = document.querySelectorAll("ion-checkbox");
+	check() {	
+		console.log("MONTANT : " + this.montant);
+		let checkbox = document.querySelectorAll("#listeMembresParticipants ion-checkbox");
 		for (let i = 0; i < this.membres.length; i++) {
-			if (cocher == 0) {
-				this.membres[i]['permission'] = true;
-				checkbox[i].checked = true;
-			}
-			else {
+			let mbr = this.membres[i];
+			if (this.cocher == 0) {		
 				this.membres[i]['permission'] = false;
-				checkbox[i].checked = false;
+				checkbox[i].setAttribute("checked", "true");
+			}
+			else {	
+				this.membres[i]['permission'] = true;
+				checkbox[i].setAttribute("checked", "false");
+				// mbr['permission'] = "true";
 			}
 		}
-		console.log(this.membres)
+		if (this.cocher == 0) {
+			this.cocher = 1;
+		}
+		else {
+			this.cocher = 0;
+		}
+	}
+
+	onChangeCurrency() {
+		let currency = document.querySelectorAll("#listeMembresParticipants .membre .currency");
+		for(let i = 0 ; i < currency.length ; i++) { // on boucle parmis toutes les checkbox et on vérifie ceux qui sont TRUE pour leur assigner la valeur, et 0 à ceux FALSE
+			currency[i].innerHTML = this.currency;
+			console.log(this.currency);
+		}
+	}
+
+	onChangeAmount() {
+		let checkbox = document.querySelectorAll("#listeMembresParticipants .membre ion-checkbox");
+		let nbParticipants = this.getTrueMembers().length;
+		for(let i = 0 ; i < checkbox.length ; i++) { // on boucle parmis toutes les checkbox et on vérifie ceux qui sont TRUE pour leur assigner la valeur, et 0 à ceux FALSE
+			let amount = checkbox[i].parentElement.children[2].children[0];
+			if(checkbox[i].checked) {
+				amount.innerHTML = "" + (this.montant / nbParticipants).toFixed(2); // 2 nb après la virgule
+				this.membres[i]['amount'] = (this.montant / nbParticipants).toFixed(2); // on ajoute une valeur à notre tableau d'objet -> le montant que chacun doit payer
+			}
+			else {
+				amount.innerHTML = "0";
+				this.membres[i]['amount'] = 0; 
+			}
+		}
+		// console.log(this.membres);
+	}
+	getTrueMembers() {
+		let trueMembers = [];
+		for (let i = 0; i < this.membres.length; i++) {
+			if (this.membres[i]['permission']) {
+				trueMembers.push(this.membres[i]['name']);
+			}
+		}
+		return trueMembers;
 	}
 
 	getFalseMembers() {
@@ -95,19 +143,23 @@ export class AjoutdepenseComponent implements OnInit {
 	}
 
 	addDepense() {
-		let json = {
-			titre: this.titre,
-			montant: this.montant,
-			idEvenement: this.idEvenement,
-			falseMembers: this.getFalseMembers()
+		if(this.montant != undefined) {
+			let json = {
+				titre: this.titre,
+				montant: this.montant,
+				idEvenement: this.idEvenement,
+				currency: this.currency,
+				allMembers: this.membres
+			}
+			console.log(json);
+			let httpoption = {
+				headers: new HttpHeaders({
+					'Content-Type': 'application/json',
+					'Access-Control-Allow-Origin': '*'
+				})
+			};
 		}
-		console.log(json);
-		let httpoption = {
-			headers: new HttpHeaders({
-				'Content-Type': 'application/json',
-				'Access-Control-Allow-Origin': '*'
-			})
-		};
+		
 		// this.http.post(environment.adressePython + '/modifEvent', json, httpoption).subscribe(
 		// 	data => {
 		// 		console.log(data);

@@ -1,38 +1,81 @@
-<ion-header translucent>
+<ion-header>
 	<ion-toolbar>
-		<ion-title>Modal Content</ion-title>
+		<ion-title>New expense</ion-title>
 		<ion-buttons slot="end">
-			<ion-button (click)="dismiss()">Close</ion-button>
+			<ion-button (click)="dismiss()">X</ion-button>
 		</ion-buttons>
 	</ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
 	<ion-list>
 		<ion-item>
-			<ion-item>
-				<ion-label position="floating">Titre : </ion-label>
-				<ion-input [(ngModel)]="titre"></ion-input>
-			</ion-item>
+
+			<ion-label position="floating">Title :</ion-label>
+			<ion-input [(ngModel)]="titre"></ion-input>
+
 		</ion-item>
-		<ion-item>
+		<div class='montant'>
 			<ion-item>
-				<ion-label position="floating">Montant</ion-label>
-				<ion-input [(ngModel)]="montant" type='number' min='0'></ion-input>
+
+				<ion-label position="floating">Amount </ion-label>
+				<ion-input [(ngModel)]="montant" (ionChange)="onChangeAmount()" type='number' min='0'></ion-input>
 			</ion-item>
-		</ion-item>
-		<ion-item>
-			<ion-button color="dark" (click)="check(0)">Check All</ion-button>
+			<div>
+				<ion-select placeholder="CAD" (ionChange)="onChangeCurrency()" [(ngModel)]="currency" value="cad" interface="action-sheet" mode="ios">
+					<ion-select-option value="cad">CAD</ion-select-option>
+					<ion-select-option value="us">US</ion-select-option>
+					<ion-select-option value="eur">EUR</ion-select-option>
+				</ion-select>
+			</div>
+		</div>
+		<ion-button id="addExpense" color="primary" (click)="addDepense()">Ajouter la dépense</ion-button>
+
+		<div id="forWhom">
+			<ion-checkbox color="primary" (click)="check()" checked='true'></ion-checkbox>
+			<div class='title'>FOR WHOM</div>
+			<div class="changeValueOfMembers">ADVANCED</div>
+		</div>
+
+		<!-- <ion-item>
+			<ion-button color="dark" >Check All</ion-button>
 			<ion-button color="dark" (click)="check(1)">Uncheck All</ion-button>
-		</ion-item>
+		</ion-item> -->
+
+		<!-- <ion-list>
+			<div id="listeMembresParticipants">
+				<div class='membre'>
+					<ion-checkbox color="primary" (ionChange)="changeBox(i)" checked={i.permission}></ion-checkbox>
+					<div class='name'>Baptiste</div>
+					<div class='amount'>
+						<div class='price'>50</div>
+						<div class='currency'>CAD</div>
+					</div>
+				</div>
+			</div>
+		</ion-list> -->
 
 		<ion-list>
-			<div *ngFor="let i of membres">
-				<ion-item>
-					<ion-label>{{i.name}}</ion-label>
-					<ion-checkbox color="dark" (ionChange)="changeBox(i)" checked={i.permission}></ion-checkbox>
-					
-				</ion-item>
+			<div *ngFor="let i of membres" id="listeMembresParticipants">
+				
+				<div class='membre'>
+					<ion-checkbox color="primary" (ionChange)="changeBox(i)" checked={i.permission}></ion-checkbox>
+					<div class='name'>{{i.name}}</div>
+					<div class='amount'>
+						<div class='price'></div>
+						<div class='currency'>CAD</div>
+					</div>
+				</div>
+				
+				
+				
 			</div>
+			<!-- <div *ngFor="let i of membres">
+				<ion-item>
+					<ion-label>Pokémon Yellow</ion-label>
+					<ion-checkbox [(ngModel)]='i' color="dark" (ionChange)="changeBox(i)">
+					</ion-checkbox>
+				</ion-item>
+			</div> -->
 		</ion-list>
 		<!-- <ion-item>
 			<ion-item>
@@ -54,5 +97,5 @@
 			</ion-item>
 		</ion-item> -->
 	</ion-list>
-	<ion-button color="primary" (click)="addDepense()">Ajouter la dépense</ion-button>
+
 </ion-content>
