@@ -21,7 +21,8 @@
 				<ion-input [(ngModel)]="montant" (ionChange)="onChangeAmount()" type='number' min='0'></ion-input>
 			</ion-item>
 			<div>
-				<ion-select placeholder="CAD" (ionChange)="onChangeCurrency()" [(ngModel)]="currency" value="cad" interface="action-sheet" mode="ios">
+				<ion-select placeholder="CAD" (ionChange)="onChangeCurrency()" [(ngModel)]="currency" value="cad"
+					interface="action-sheet" mode="ios">
 					<ion-select-option value="cad">CAD</ion-select-option>
 					<ion-select-option value="us">US</ion-select-option>
 					<ion-select-option value="eur">EUR</ion-select-option>
@@ -33,30 +34,12 @@
 		<div id="forWhom">
 			<ion-checkbox color="primary" (click)="check()" checked='true'></ion-checkbox>
 			<div class='title'>FOR WHOM</div>
-			<div class="changeValueOfMembers">ADVANCED</div>
+			<div class="changeValueOfMembers"  (click)="advancedMode()">ADVANCED</div>
 		</div>
 
-		<!-- <ion-item>
-			<ion-button color="dark" >Check All</ion-button>
-			<ion-button color="dark" (click)="check(1)">Uncheck All</ion-button>
-		</ion-item> -->
-
-		<!-- <ion-list>
-			<div id="listeMembresParticipants">
-				<div class='membre'>
-					<ion-checkbox color="primary" (ionChange)="changeBox(i)" checked={i.permission}></ion-checkbox>
-					<div class='name'>Baptiste</div>
-					<div class='amount'>
-						<div class='price'>50</div>
-						<div class='currency'>CAD</div>
-					</div>
-				</div>
-			</div>
-		</ion-list> -->
 
 		<ion-list>
 			<div *ngFor="let i of membres" id="listeMembresParticipants">
-				
 				<div class='membre'>
 					<ion-checkbox color="primary" (ionChange)="changeBox(i)" checked={i.permission}></ion-checkbox>
 					<div class='name'>{{i.name}}</div>
@@ -65,37 +48,9 @@
 						<div class='currency'>CAD</div>
 					</div>
 				</div>
-				
-				
-				
 			</div>
-			<!-- <div *ngFor="let i of membres">
-				<ion-item>
-					<ion-label>Pokémon Yellow</ion-label>
-					<ion-checkbox [(ngModel)]='i' color="dark" (ionChange)="changeBox(i)">
-					</ion-checkbox>
-				</ion-item>
-			</div> -->
 		</ion-list>
-		<!-- <ion-item>
-			<ion-item>
-				<div class='participants'>
-					<ion-list>
 
-						<div *ngFor="let i of checked">
-							<div *ngFor="let i of members">
-								<ion-item>
-									<ion-label>Pokémon Yellow</ion-label>
-									<ion-checkbox [(ngModel)]='i' color="dark" (ionChange)="changeBox(i)">
-									</ion-checkbox>
-								</ion-item>
-							</div>
-
-
-					
-				</div>
-			</ion-item>
-		</ion-item> -->
 	</ion-list>
 
 </ion-content>

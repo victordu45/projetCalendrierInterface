@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders, HttpClientModule, HttpHeaderResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { unwatchFile } from 'fs';
 
 @Component({
 	selector: 'app-ajoutdepense',
@@ -18,6 +19,7 @@ export class AjoutdepenseComponent implements OnInit {
 	montant: number;
 	idEvenement: string;
 	currency = "cad";
+	advanced = 0;
 	checked = [];
 	membres = [];
 	cocher = 1;
@@ -31,8 +33,8 @@ export class AjoutdepenseComponent implements OnInit {
 			}
 		});
 		this.checked = [true, false, true, false]
-		let calendrier = JSON.parse(localStorage.getItem('calendar'))
-		this.calendName = calendrier['idCalendrier']
+		let calendrier = JSON.parse(localStorage.getItem('calendar'));
+		this.calendName = calendrier['idCalendrier'];
 		let httpoption = {
 			headers: new HttpHeaders({
 				'Content-Type': 'application/json',
@@ -51,8 +53,8 @@ export class AjoutdepenseComponent implements OnInit {
 					membre = { 'name': name, 'permission': permission };
 					this.membres.push(membre);
 				}
-				
-				
+
+
 
 			})
 	}
@@ -75,16 +77,16 @@ export class AjoutdepenseComponent implements OnInit {
 		this.onChangeAmount();
 		// console.log(this.membres);
 	}
-	check() {	
+	check() {
 		console.log("MONTANT : " + this.montant);
 		let checkbox = document.querySelectorAll("#listeMembresParticipants ion-checkbox");
 		for (let i = 0; i < this.membres.length; i++) {
 			let mbr = this.membres[i];
-			if (this.cocher == 0) {		
+			if (this.cocher == 0) {
 				this.membres[i]['permission'] = false;
 				checkbox[i].setAttribute("checked", "true");
 			}
-			else {	
+			else {
 				this.membres[i]['permission'] = true;
 				checkbox[i].setAttribute("checked", "false");
 				// mbr['permission'] = "true";
@@ -100,7 +102,7 @@ export class AjoutdepenseComponent implements OnInit {
 
 	onChangeCurrency() {
 		let currency = document.querySelectorAll("#listeMembresParticipants .membre .currency");
-		for(let i = 0 ; i < currency.length ; i++) { // on boucle parmis toutes les checkbox et on vérifie ceux qui sont TRUE pour leur assigner la valeur, et 0 à ceux FALSE
+		for (let i = 0; i < currency.length; i++) { // on boucle parmis toutes les checkbox et on vérifie ceux qui sont TRUE pour leur assigner la valeur, et 0 à ceux FALSE
 			currency[i].innerHTML = this.currency;
 			console.log(this.currency);
 		}
@@ -109,19 +111,119 @@ export class AjoutdepenseComponent implements OnInit {
 	onChangeAmount() {
 		let checkbox = document.querySelectorAll("#listeMembresParticipants .membre ion-checkbox");
 		let nbParticipants = this.getTrueMembers().length;
-		for(let i = 0 ; i < checkbox.length ; i++) { // on boucle parmis toutes les checkbox et on vérifie ceux qui sont TRUE pour leur assigner la valeur, et 0 à ceux FALSE
+		for (let i = 0; i < checkbox.length; i++) { // on boucle parmis toutes les checkbox et on vérifie ceux qui sont TRUE pour leur assigner la valeur, et 0 à ceux FALSE
 			let amount = checkbox[i].parentElement.children[2].children[0];
-			if(checkbox[i].checked) {
+			if (checkbox[i].checked) {
 				amount.innerHTML = "" + (this.montant / nbParticipants).toFixed(2); // 2 nb après la virgule
 				this.membres[i]['amount'] = (this.montant / nbParticipants).toFixed(2); // on ajoute une valeur à notre tableau d'objet -> le montant que chacun doit payer
 			}
 			else {
 				amount.innerHTML = "0";
-				this.membres[i]['amount'] = 0; 
+				this.membres[i]['amount'] = 0;
 			}
 		}
 		// console.log(this.membres);
 	}
+
+	advancedMode() {
+		// console.log("advancedmode");
+		let amount = document.querySelectorAll("#listeMembresParticipants .membre .amount .price");
+		// console.log(amount);
+		if (this.montant != undefined) {
+			for (let i = 0; i < amount.length; i++) {
+				if (this.advanced == 0) {
+					let inp = document.createElement("ion-input");
+					inp.setAttribute("value", amount[i].innerHTML);
+					inp.setAttribute("class", "");
+					inp.setAttribute("type", "number");
+					inp.setAttribute("modified", false);
+					inp.setAttribute("ionChange", "this.onChangeIndividualPrice()");
+					amount[i].innerHTML = "";
+					amount[i].appendChild(inp);
+					// amount[i].appendChild(inp);
+					// console.log("avant event : " + inp.value);
+					amount[i].children[0].addEventListener('ionInput', (e: Event) => this.onChangeIndividualPrice(e));
+					// console.log("onchange");
+					// this.setAttribute("value", this.value);
+					// let individualInputs = document.querySelectorAll("#listeMembresParticipants .membre .amount .price ion-input");
+					// console.log(individualInputs);
+					// console.log(this.value);
+
+					// console.log(amount[i].children[0]);
+				}
+				else {
+					console.log("VALUE : " + amount[i].children[0].value);
+					amount[i].innerHTML = amount[i].children[0].value;
+				}
+			}
+			if (this.advanced == 0) {
+				this.advanced = 1;
+			}
+			else {
+				this.advanced = 0;
+			}
+		}
+	}
+	onChangeIndividualPrice(e) {
+		// console.log("test");
+		console.log(e);
+		console.log("_______onChangeIndividualPrice________");
+		console.log("VALEUR = " + e.detail['value']);
+		let nbParticipants = this.getTrueMembers().length;
+		let amountMax = this.montant / nbParticipants;
+		console.log("MAX = " + amountMax);
+		if (e.detail['value'] > this.montant) {
+			console.log("lolol");
+			e.target.value = amountMax;
+			e.target.setAttribute("modified", "true");
+		}
+		else {
+			e.target.setAttribute("modified", "true");
+
+
+		}
+		this.equilibrage(e.target.value);
+		console.log("_______END________");
+	}
+
+	equilibrage(current) {
+
+		let inputsNonModifies = document.querySelectorAll("#listeMembresParticipants .membre .amount .price ion-input[modified=false]");
+		let inputsModifies = document.querySelectorAll("#listeMembresParticipants .membre .amount .price ion-input[modified=true]");
+		console.log("NON MODIFIES");
+		console.log(inputsNonModifies);
+		console.log(inputsModifies);
+		let montantTotalModifie = 0;
+
+		let checkbox = document.querySelectorAll("#listeMembresParticipants .membre ion-checkbox");
+
+		for (let i = 0; i < inputsModifies.length; i++) {
+			// console.log("MODIFIEEEE : " + inputsModifies[i].value);
+			montantTotalModifie += inputsModifies[i].value;
+		}
+		let compteurCocheEtNonModifie = 0;
+		for (let i = 0; i < checkbox.length; i++) { // on COMPTE DABORD les checkbox non modifiés et cochés !
+			let checkb = checkbox[i].parentElement.children[2].children[0];
+			// console.log(checkb);
+			// console.log(checkbox[i]);
+			if (checkbox[i].checked && checkb.children[0].getAttribute("modified") == "false") {
+				// console.log(checkb);
+				compteurCocheEtNonModifie++;
+			}
+			// inputsNonModifies[i].value = ((this.montant - montantTotalModifie).toFixed(2)) / 
+		}
+		console.log(compteurCocheEtNonModifie);
+		for (let i = 0; i < checkbox.length; i++) { // on balance les inputs non modifiés :) !
+			let checkb = checkbox[i].parentElement.children[2].children[0];
+			if (checkbox[i].checked && checkb.children[0].getAttribute("modified") == "false") {
+				// console.log("LOO");
+				checkb.children[0].value = ((this.montant - montantTotalModifie) / compteurCocheEtNonModifie).toFixed(2);
+				// console.log(checkb);
+			}
+
+		}
+	}
+
 	getTrueMembers() {
 		let trueMembers = [];
 		for (let i = 0; i < this.membres.length; i++) {
@@ -142,8 +244,26 @@ export class AjoutdepenseComponent implements OnInit {
 		return falseMembers;
 	}
 
+	getAllPrices() {
+		// fonction qui permet de faire le récap de toutes les transactions avant d'envoyer au serveur
+		if (this.advanced == 0) {
+			let mbr = document.querySelectorAll("#listeMembresParticipants .membre") ;
+			for (let i = 0; i < mbr.length; i++) {
+				let chec = mbr[i].children[0] as HTMLIonCheckboxElement;
+				this.membres[i]['permission'] = chec.checked;
+				this.membres[i]['amount'] = mbr[i].children[2].children[0].textContent;
+			}
+			console.log(this.membres);
+		}
+		else {
+			alert("Please confirm modifications");
+		}
+
+	}
+
 	addDepense() {
-		if(this.montant != undefined) {
+		this.getAllPrices();
+		if (this.montant != undefined) {
 			let json = {
 				titre: this.titre,
 				montant: this.montant,
@@ -159,7 +279,7 @@ export class AjoutdepenseComponent implements OnInit {
 				})
 			};
 		}
-		
+
 		// this.http.post(environment.adressePython + '/modifEvent', json, httpoption).subscribe(
 		// 	data => {
 		// 		console.log(data);
