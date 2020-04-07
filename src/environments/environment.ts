@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  adressePython: 'http://192.168.0.120:5000'
+  adressePython: 'http://192.168.1.59:5000',
+  adresseSocket: 'http://192.168.1.59:5001'
 };
 
 /*
