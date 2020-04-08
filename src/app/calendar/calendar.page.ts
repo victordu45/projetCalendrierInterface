@@ -396,32 +396,32 @@ export class CalendarPage implements OnInit {
 		function closeDragElement(e) {
 			// stop moving when mouse button is released:
 			// alert("ok");
-			e = e || window.event;
-			// e.preventDefault();
-			alert(e.touches[0].pageX);
-			// let clientX = e.clientX;
-			// let clientY = e.clientY;
-			// if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
-				let clientX = e.targetTouches[0].clientX;
-				let clientY = e.pageY;
+			// e = e || window.event;
+			// // e.preventDefault();
+			// // alert(e.touches[0].pageX);
+			// // let clientX = e.clientX;
+			// // let clientY = e.clientY;
+			// // if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
+			// 	let clientX = e.targetTouches[0].clientX;
+			// 	let clientY = e.pageY;
+			// // }
+			// x_end = clientX;
+			// y_end = clientY;
+			// let Xdiff = Math.abs(x_begin - x_end);
+			// let Ydiff = Math.abs(y_begin - y_end);
+			// // alert("x_begin : " + x_begin  +  " , y_begin : " + y_begin + " x_end " + x_end + " y_end " + y_end +  " Xdiff " + Xdiff + " Ydiff" + Ydiff);
+			// if(y_begin < y_end) {
+			// 	buttonAddEvent.style.top = (buttonAddEvent.offsetTop - pos2) + (Ydiff *2) +  "px";
 			// }
-			x_end = clientX;
-			y_end = clientY;
-			let Xdiff = Math.abs(x_begin - x_end);
-			let Ydiff = Math.abs(y_begin - y_end);
-			alert("x_begin : " + x_begin  +  " , y_begin : " + y_begin + " x_end " + x_end + " y_end " + y_end +  " Xdiff " + Xdiff + " Ydiff" + Ydiff);
-			if(y_begin < y_end) {
-				buttonAddEvent.style.top = (buttonAddEvent.offsetTop - pos2) + (Ydiff *2) +  "px";
-			}
-			else {
-				buttonAddEvent.style.top = (buttonAddEvent.offsetTop - pos2) - (Ydiff *2) +  "px";
-			}
-			if(x_begin < x_end) {
-				buttonAddEvent.style.left = (buttonAddEvent.offsetLeft - pos1) + (Ydiff*2) +"px";
-			}
-			else {
-				buttonAddEvent.style.left = (buttonAddEvent.offsetLeft - pos1) - (Ydiff*2) +"px";
-			}
+			// else {
+			// 	buttonAddEvent.style.top = (buttonAddEvent.offsetTop - pos2) - (Ydiff *2) +  "px";
+			// }
+			// if(x_begin < x_end) {
+			// 	buttonAddEvent.style.left = (buttonAddEvent.offsetLeft - pos1) + (Ydiff*2) +"px";
+			// }
+			// else {
+			// 	buttonAddEvent.style.left = (buttonAddEvent.offsetLeft - pos1) - (Ydiff*2) +"px";
+			// }
 			// buttonAddEvent.style.top = (buttonAddEvent.offsetTop - pos2) + "px";
 			// buttonAddEvent.style.left = (buttonAddEvent.offsetLeft - pos1) +"px";
 			document.onmouseup = null;

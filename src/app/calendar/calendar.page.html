@@ -26,6 +26,16 @@
 </ion-calendar>
 <ion-content>
 	<div class='mainEvenements'>
+		<div class='navExpenses'>
+			<div>
+				<div class='title'>MY TOTAL</div>
+				<div class='amount'>CA$2500</div>
+			</div>
+			<div>
+				<div class='title'>TOTAL</div>
+				<div class='amount'>CA$3521</div>
+			</div>
+		</div>
 		<div class='evenement' *ngFor="let i of evenements"
 			[ngStyle]="{'background-color' :i.couleurThemeRgba , 'border-left':i.couleurTheme}" (click)="test(i)">
 			<div class='titre'>
@@ -43,17 +53,9 @@
 				</div>
 			</div>
 		</div>
+		
 	</div>
-	<div class='navExpenses'>
-		<div>
-			<div class='title'>MY TOTAL</div>
-			<div class='amount'>CA$2500</div>
-		</div>
-		<div>
-			<div class='title'>TOTAL</div>
-			<div class='amount'>CA$3521</div>
-		</div>
-	</div>
+	
 </ion-content>
 <ion-fab-button class='addEvent' name="button" value="$event" (click)="redirect()">
 	<ion-icon name="add"></ion-icon>
