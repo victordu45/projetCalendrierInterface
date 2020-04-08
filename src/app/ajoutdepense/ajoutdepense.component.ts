@@ -4,7 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders, HttpClientModule, HttpHeaderResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { unwatchFile } from 'fs';
+
 
 @Component({
 	selector: 'app-ajoutdepense',
@@ -78,6 +78,7 @@ export class AjoutdepenseComponent implements OnInit {
 		// console.log(this.membres);
 	}
 	check() {
+		console.log("________________check____________");
 		console.log("MONTANT : " + this.montant);
 		let checkbox = document.querySelectorAll("#listeMembresParticipants ion-checkbox");
 		for (let i = 0; i < this.membres.length; i++) {
@@ -85,10 +86,12 @@ export class AjoutdepenseComponent implements OnInit {
 			if (this.cocher == 0) {
 				this.membres[i]['permission'] = false;
 				checkbox[i].setAttribute("checked", "true");
+				checkbox[i].setAttribute("aria-checked", "true");
 			}
 			else {
 				this.membres[i]['permission'] = true;
 				checkbox[i].setAttribute("checked", "false");
+				checkbox[i].setAttribute("aria-checked", "false");
 				// mbr['permission'] = "true";
 			}
 		}
@@ -98,6 +101,8 @@ export class AjoutdepenseComponent implements OnInit {
 		else {
 			this.cocher = 0;
 		}
+		this.onChangeAmount();
+		console.log("___________//CHECK_____________");
 	}
 
 	onChangeCurrency() {
@@ -109,11 +114,13 @@ export class AjoutdepenseComponent implements OnInit {
 	}
 
 	onChangeAmount() {
+		console.log("______onChangeAmount()_______");
 		let checkbox = document.querySelectorAll("#listeMembresParticipants .membre ion-checkbox");
 		let nbParticipants = this.getTrueMembers().length;
 		for (let i = 0; i < checkbox.length; i++) { // on boucle parmis toutes les checkbox et on vérifie ceux qui sont TRUE pour leur assigner la valeur, et 0 à ceux FALSE
 			let amount = checkbox[i].parentElement.children[2].children[0];
-			if (checkbox[i].checked) {
+			console.log("aria checked = " + checkbox[i].getAttribute("aria-checked"));
+			if (checkbox[i].getAttribute("aria-checked") == "true") {
 				amount.innerHTML = "" + (this.montant / nbParticipants).toFixed(2); // 2 nb après la virgule
 				this.membres[i]['amount'] = (this.montant / nbParticipants).toFixed(2); // on ajoute une valeur à notre tableau d'objet -> le montant que chacun doit payer
 			}
@@ -122,6 +129,7 @@ export class AjoutdepenseComponent implements OnInit {
 				this.membres[i]['amount'] = 0;
 			}
 		}
+		console.log("___________//onChangeAmount______________");
 		// console.log(this.membres);
 	}
 
@@ -136,7 +144,7 @@ export class AjoutdepenseComponent implements OnInit {
 					inp.setAttribute("value", amount[i].innerHTML);
 					inp.setAttribute("class", "");
 					inp.setAttribute("type", "number");
-					inp.setAttribute("modified", false);
+					inp.setAttribute("modified", "false");
 					inp.setAttribute("ionChange", "this.onChangeIndividualPrice()");
 					amount[i].innerHTML = "";
 					amount[i].appendChild(inp);
@@ -152,8 +160,10 @@ export class AjoutdepenseComponent implements OnInit {
 					// console.log(amount[i].children[0]);
 				}
 				else {
-					console.log("VALUE : " + amount[i].children[0].value);
-					amount[i].innerHTML = amount[i].children[0].value;
+					// console.log("VALUE : " + amount[i].children[0].value);
+					console.log("VALUE .getAttribute : " + amount[i].children[0].getAttribute("value"));
+					console.log()
+					amount[i].innerHTML = amount[i].children[0].getAttribute("value");
 				}
 			}
 			if (this.advanced == 0) {
@@ -175,11 +185,12 @@ export class AjoutdepenseComponent implements OnInit {
 		if (e.detail['value'] > this.montant) {
 			console.log("lolol");
 			e.target.value = amountMax;
+			e.target.setAttribute("value",amountMax);
 			e.target.setAttribute("modified", "true");
 		}
 		else {
 			e.target.setAttribute("modified", "true");
-
+			e.target.setAttribute("value",e.target.value);
 
 		}
 		this.equilibrage(e.target.value);
@@ -199,14 +210,14 @@ export class AjoutdepenseComponent implements OnInit {
 
 		for (let i = 0; i < inputsModifies.length; i++) {
 			// console.log("MODIFIEEEE : " + inputsModifies[i].value);
-			montantTotalModifie += inputsModifies[i].value;
+			montantTotalModifie += parseFloat(inputsModifies[i].getAttribute("value"));
 		}
 		let compteurCocheEtNonModifie = 0;
 		for (let i = 0; i < checkbox.length; i++) { // on COMPTE DABORD les checkbox non modifiés et cochés !
 			let checkb = checkbox[i].parentElement.children[2].children[0];
 			// console.log(checkb);
 			// console.log(checkbox[i]);
-			if (checkbox[i].checked && checkb.children[0].getAttribute("modified") == "false") {
+			if (checkbox[i].getAttribute("aria-checked") && checkb.children[0].getAttribute("modified") == "false") {
 				// console.log(checkb);
 				compteurCocheEtNonModifie++;
 			}
@@ -215,9 +226,10 @@ export class AjoutdepenseComponent implements OnInit {
 		console.log(compteurCocheEtNonModifie);
 		for (let i = 0; i < checkbox.length; i++) { // on balance les inputs non modifiés :) !
 			let checkb = checkbox[i].parentElement.children[2].children[0];
-			if (checkbox[i].checked && checkb.children[0].getAttribute("modified") == "false") {
+			if (checkbox[i].getAttribute("aria-checked") == "true" && checkb.children[0].getAttribute("modified") == "false") {
 				// console.log("LOO");
-				checkb.children[0].value = ((this.montant - montantTotalModifie) / compteurCocheEtNonModifie).toFixed(2);
+				// checkb.children[0].value = ((this.montant - montantTotalModifie) / compteurCocheEtNonModifie).toFixed(2);
+				checkb.children[0].setAttribute("value",((this.montant - montantTotalModifie) / compteurCocheEtNonModifie).toFixed(2));
 				// console.log(checkb);
 			}
 
@@ -256,7 +268,7 @@ export class AjoutdepenseComponent implements OnInit {
 			console.log(this.membres);
 		}
 		else {
-			alert("Please confirm modifications");
+			alert("Please confirm modifications"); 
 		}
 
 	}
