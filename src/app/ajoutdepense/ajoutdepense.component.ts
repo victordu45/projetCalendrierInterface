@@ -79,8 +79,8 @@ export class AjoutdepenseComponent implements OnInit {
 	}
 	check() {
 		if(this.advanced == 0) { // ONPEUT COCHER OU DECOCHER TOUT LE MONDE UNIQUEMENT QUAND LE MODE AVANCE NEST PAS ACTIF => PAS DE MOFICIATION MANUEL DE PRIX
-			console.log("________________check____________");
-			console.log("MONTANT : " + this.montant);
+			// console.log("________________check____________");
+			// console.log("MONTANT : " + this.montant);
 			let checkbox = document.querySelectorAll("#listeMembresParticipants ion-checkbox");
 			for (let i = 0; i < this.membres.length; i++) {
 				let mbr = this.membres[i];
@@ -103,7 +103,7 @@ export class AjoutdepenseComponent implements OnInit {
 				this.cocher = 0;
 			}
 			this.onChangeAmount();
-			console.log("___________//CHECK_____________");
+			// console.log("___________//CHECK_____________");
 		}
 		
 		
@@ -113,12 +113,12 @@ export class AjoutdepenseComponent implements OnInit {
 		let currency = document.querySelectorAll("#listeMembresParticipants .membre .currency");
 		for (let i = 0; i < currency.length; i++) { // on boucle parmis toutes les checkbox et on vérifie ceux qui sont TRUE pour leur assigner la valeur, et 0 à ceux FALSE
 			currency[i].innerHTML = this.currency;
-			console.log(this.currency);
+			// console.log(this.currency);
 		}
 	}
 
 	onChangeAmount() {
-		console.log("______onChangeAmount()_______");
+		// console.log("______onChangeAmount()_______");
 		let checkbox = document.querySelectorAll("#listeMembresParticipants .membre ion-checkbox");
 		let nbParticipants = this.getTrueMembers().length;
 		for (let i = 0; i < checkbox.length; i++) { // on boucle parmis toutes les checkbox et on vérifie ceux qui sont TRUE pour leur assigner la valeur, et 0 à ceux FALSE
@@ -133,7 +133,7 @@ export class AjoutdepenseComponent implements OnInit {
 				this.membres[i]['amount'] = 0;
 			}
 		}
-		console.log("___________//onChangeAmount______________");
+		// console.log("___________//onChangeAmount______________");
 		// console.log(this.membres);
 	}
 
@@ -165,8 +165,8 @@ export class AjoutdepenseComponent implements OnInit {
 				}
 				else {
 					// console.log("VALUE : " + amount[i].children[0].value);
-					console.log("VALUE .getAttribute : " + amount[i].children[0].getAttribute("value"));
-					console.log()
+					// console.log("VALUE .getAttribute : " + amount[i].children[0].getAttribute("value"));
+					// console.log()
 					amount[i].innerHTML = amount[i].children[0].getAttribute("value");
 				}
 			}
@@ -190,9 +190,9 @@ export class AjoutdepenseComponent implements OnInit {
 	}
 	onChangeIndividualPrice(e) {
 		// console.log("test");
-		console.log(e);
-		console.log("_______onChangeIndividualPrice________");
-		console.log("VALEUR = " + e.detail['value']);
+		// console.log(e);
+		// console.log("_______onChangeIndividualPrice________");
+		// console.log("VALEUR = " + e.detail['value']);
 		let nbParticipants = this.getTrueMembers().length;
 		let amountMax = this.montant / nbParticipants;
 		console.log("MAX = " + amountMax);
@@ -208,7 +208,7 @@ export class AjoutdepenseComponent implements OnInit {
 
 		}
 		this.equilibrage(e.target.value);
-		console.log("_______END________");
+		// console.log("_______END________");
 	}
 
 	equilibrage(current) {
