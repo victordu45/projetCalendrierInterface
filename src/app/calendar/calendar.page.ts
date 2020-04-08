@@ -157,7 +157,7 @@ export class CalendarPage implements OnInit {
 		var moisNumbers = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
 		varEvent.setAttribute('value', event);
 		let theDay = new Date(Date.parse(event._d));
-		let day = theDay.getFullYear() + "-" + moisNumbers[theDay.getMonth()] + "-" + jourNumbers[theDay.getUTCDate()];
+		let day = theDay.getFullYear() + "-" + moisNumbers[theDay.getMonth()] + "-" + jourNumbers[theDay.getUTCDate()-1];
 		console.log(event, day);
 		let couleurTheme = localStorage.getItem("couleurTheme");
 		let json = {
