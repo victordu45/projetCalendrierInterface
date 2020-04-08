@@ -78,31 +78,35 @@ export class AjoutdepenseComponent implements OnInit {
 		// console.log(this.membres);
 	}
 	check() {
-		console.log("________________check____________");
-		console.log("MONTANT : " + this.montant);
-		let checkbox = document.querySelectorAll("#listeMembresParticipants ion-checkbox");
-		for (let i = 0; i < this.membres.length; i++) {
-			let mbr = this.membres[i];
+		if(this.advanced == 0) { // ONPEUT COCHER OU DECOCHER TOUT LE MONDE UNIQUEMENT QUAND LE MODE AVANCE NEST PAS ACTIF => PAS DE MOFICIATION MANUEL DE PRIX
+			console.log("________________check____________");
+			console.log("MONTANT : " + this.montant);
+			let checkbox = document.querySelectorAll("#listeMembresParticipants ion-checkbox");
+			for (let i = 0; i < this.membres.length; i++) {
+				let mbr = this.membres[i];
+				if (this.cocher == 0) {
+					this.membres[i]['permission'] = false;
+					checkbox[i].setAttribute("checked", "true");
+					checkbox[i].setAttribute("aria-checked", "true");
+				}
+				else {
+					this.membres[i]['permission'] = true;
+					checkbox[i].setAttribute("checked", "false");
+					checkbox[i].setAttribute("aria-checked", "false");
+					// mbr['permission'] = "true";
+				}
+			}
 			if (this.cocher == 0) {
-				this.membres[i]['permission'] = false;
-				checkbox[i].setAttribute("checked", "true");
-				checkbox[i].setAttribute("aria-checked", "true");
+				this.cocher = 1;
 			}
 			else {
-				this.membres[i]['permission'] = true;
-				checkbox[i].setAttribute("checked", "false");
-				checkbox[i].setAttribute("aria-checked", "false");
-				// mbr['permission'] = "true";
+				this.cocher = 0;
 			}
+			this.onChangeAmount();
+			console.log("___________//CHECK_____________");
 		}
-		if (this.cocher == 0) {
-			this.cocher = 1;
-		}
-		else {
-			this.cocher = 0;
-		}
-		this.onChangeAmount();
-		console.log("___________//CHECK_____________");
+		
+		
 	}
 
 	onChangeCurrency() {
@@ -166,12 +170,22 @@ export class AjoutdepenseComponent implements OnInit {
 					amount[i].innerHTML = amount[i].children[0].getAttribute("value");
 				}
 			}
+			// ON BLOQUE LE BOUTON DU CHECK ALL 
+			let checkAll = document.querySelectorAll("ion-checkbox");
 			if (this.advanced == 0) {
 				this.advanced = 1;
+				for(let i = 0 ; i < checkAll.length ; i++) {
+					checkAll[i].setAttribute("disabled","true");
+				}
+				
 			}
 			else {
 				this.advanced = 0;
+				for(let i = 0 ; i < checkAll.length ; i++) {
+					checkAll[i].setAttribute("disabled","false");
+				}
 			}
+			
 		}
 	}
 	onChangeIndividualPrice(e) {
