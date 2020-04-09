@@ -291,7 +291,8 @@ export class AjoutdepenseComponent implements OnInit {
 		this.getAllPrices();
 		if (this.montant != undefined) {
 			let json = {
-				titre: this.titre,
+				idUtilisateur: localStorage.getItem('uniqueID'),
+				description: this.titre,
 				montant: this.montant,
 				idEvenement: this.idEvenement,
 				currency: this.currency,
@@ -304,12 +305,14 @@ export class AjoutdepenseComponent implements OnInit {
 					'Access-Control-Allow-Origin': '*'
 				})
 			};
+
+			
+		this.http.post(environment.adressePython + '/newTransaction', json, httpoption).subscribe(
+			data => {
+				console.log(data);
+			}
+		)
 		}
 
-		// this.http.post(environment.adressePython + '/modifEvent', json, httpoption).subscribe(
-		// 	data => {
-		// 		console.log(data);
-		// 	}
-		// )
 	}
 }
