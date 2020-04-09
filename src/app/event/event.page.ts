@@ -14,21 +14,49 @@ import { AjoutdepenseComponent } from '../ajoutdepense/ajoutdepense.component';
 })
 export class EventPage implements OnInit {
 
+	transactions;
 	constructor(public modalController: ModalController, private route: ActivatedRoute, private router: Router, public alertController: AlertController, private http: HttpClient) { }
 	modal: any;
 	data: any;
 	condition = 0;
 	errorMsg;
 	currentModal: any;
-
+	
 
 	ngOnInit() {
+		this.transactions = [];
 		this.route.queryParams.subscribe(params => {
 			if (params && params.special) {
 				this.data = JSON.parse(params.special);
 			}
 		});
 		console.log(this.data["heureDebut"]);
+		let json = {
+			uniqueID: localStorage.getItem('uniqueID'),
+			idCalendar: JSON.parse(localStorage.getItem('calendar'))['idCalendrier'],
+			idEvenement: this.data['idEvenement']
+		}
+		console.log(json);
+		let httpoption = {
+			headers: new HttpHeaders({
+				'Content-Type': 'application/json',
+				'Access-Control-Allow-Origin': '*'
+			})
+		};
+		this.http.post(environment.adressePython + '/getTransactionsFromEvent', json, httpoption).subscribe(
+			response => {
+				// console.log(data);
+				if (!('vide' in response)) {
+					for(let i in response) {
+						console.log(response);
+						console.log(this.transactions);
+						this.transactions.push(response[i]);
+					}
+				}
+				
+			}
+
+		)
 	}
 	modifier() {
 		this.condition = 1;

@@ -84,21 +84,21 @@
 		<ion-list id="expenses">
 			<ion-item-sliding>
 				<ion-item>
-					<div class='depenses'>
-						<div class='ligne'>
+					<div class='depenses' *ngFor="let i of transactions">
+						<div class='ligne' > 
 							<div class='titre'>
-								<p>Walmart</p>
+								<p>{{i.description}}</p>
 							</div>
 							<div class="prix">
-								<p>30,00 $CA</p>
+								<p>{{i.montantTotal}} {{i.currency}}</p>
 							</div>
 						</div>
 						<div class='ligne'>
 							<div class="payeur">
-								<p>Payé par <span>Baptiste</span></p>
+								<p>Payé par <span>{{i.login}}</span></p>
 							</div>
 							<div class="date">
-								<p>28/03/2020</p>
+								<p>{{i.datetransaction}}</p>
 							</div>
 						</div>
 					</div>
