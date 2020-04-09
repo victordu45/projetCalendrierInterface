@@ -22,7 +22,8 @@ import { MenuController } from '@ionic/angular';
 export class CalendarPage implements OnInit {
 	date: string;
 	type: 'string';
-
+	personalAmount = 0;
+	totalAmount = 0;
 	evenements;
 	eventSource = [];
 	constructor( private menu: MenuController, private toast: Toast, private clipboard: Clipboard, public modalCtrl: ModalController, private route: ActivatedRoute, public alertController: AlertController, private http: HttpClient, private router: Router, public calendarCtrl: CalendarController) { }
@@ -304,6 +305,7 @@ export class CalendarPage implements OnInit {
 
 		this.calendar = JSON.parse(localStorage.getItem('calendar'));
 		let couleur = localStorage.getItem('couleurTheme');
+		console.log("ID CALENDAR : " + this.calendar['idCalendrier']);
 		this.daysConfig();
 		let json = {
 			uniqueID: localStorage.getItem('uniqueID'),
@@ -338,6 +340,21 @@ export class CalendarPage implements OnInit {
 					console.log(data);
 				}
 
+			}
+
+		)
+		this.http.post(environment.adressePython + '/getPersonalAmountTransaction', json, httpoption).subscribe(
+			data => {
+				console.log(data);
+				if (('amount' in data)) this.personalAmount = data['amount'];
+				
+			}
+
+		)
+		this.http.post(environment.adressePython + '/getTotalAmountTransactionCalendar', json, httpoption).subscribe(
+			data => {
+				console.log(data);
+				if (('amount' in data)) this.totalAmount = data['amount'];
 			}
 
 		)
