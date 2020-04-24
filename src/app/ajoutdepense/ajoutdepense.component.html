@@ -1,3 +1,56 @@
-<p>
-  ajoutdepense works!
-</p>
+<ion-header>
+	<ion-toolbar>
+		<ion-title>New expense</ion-title>
+		<ion-buttons slot="end">
+			<ion-button (click)="dismiss()">X</ion-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+	<ion-list>
+		<ion-item>
+
+			<ion-label position="floating">Title :</ion-label>
+			<ion-input [(ngModel)]="titre"></ion-input>
+
+		</ion-item>
+		<div class='montant'>
+			<ion-item>
+
+				<ion-label position="floating">Amount </ion-label>
+				<ion-input [(ngModel)]="montant" (ionChange)="onChangeAmount()" type='number' min='0'></ion-input>
+			</ion-item>
+			<div>
+				<ion-select placeholder="CAD" (ionChange)="onChangeCurrency()" [(ngModel)]="currency" value="cad"
+					interface="action-sheet" mode="ios">
+					<ion-select-option value="cad">CAD</ion-select-option>
+					<ion-select-option value="us">US</ion-select-option>
+					<ion-select-option value="eur">EUR</ion-select-option>
+				</ion-select>
+			</div>
+		</div>
+		<ion-button id="addExpense" color="primary" (click)="addDepense()">Ajouter la dépense</ion-button>
+
+		<div id="forWhom">
+			<ion-checkbox color="primary" (click)="check()" checked='true' id="checkAll"></ion-checkbox>
+			<div class='title'>FOR WHOM</div>
+			<div class="changeValueOfMembers"  (click)="advancedMode()" >ADVANCED</div>
+		</div>
+
+
+		<ion-list>
+			<div *ngFor="let i of membres" id="listeMembresParticipants">
+				<div class='membre'>
+					<ion-checkbox color="primary" (ionChange)="changeBox(i)" checked={i.permission}></ion-checkbox>
+					<div class='name'>{{i.name}}</div>
+					<div class='amount'>
+						<div class='price'></div>
+						<div class='currency'>CAD</div>
+					</div>
+				</div>
+			</div>
+		</ion-list>
+
+	</ion-list>
+
+</ion-content>

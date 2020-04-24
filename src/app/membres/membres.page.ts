@@ -18,7 +18,6 @@ export class MembresPage implements OnInit {
 	memberWithWritable={}; 
 	bool = null;
 
-
 	ngOnInit() {
 		let calendrier = JSON.parse(localStorage.getItem('calendar'))
 		this.calendName = calendrier['idCalendrier']

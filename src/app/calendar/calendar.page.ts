@@ -22,13 +22,15 @@ import { MenuController } from '@ionic/angular';
 export class CalendarPage implements OnInit {
 	date: string;
 	type: 'string';
-
+	personalAmount = 0;
+	totalAmount = 0;
 	evenements;
 	eventSource = [];
 	constructor( private menu: MenuController, private toast: Toast, private clipboard: Clipboard, public modalCtrl: ModalController, private route: ActivatedRoute, public alertController: AlertController, private http: HttpClient, private router: Router, public calendarCtrl: CalendarController) { }
 	errorMsg = "";
 	calendar = null;
 	nombre = 0;
+	adressePython: 'http://192.168.0.120:5000';
 
 
 	optionsMulti: CalendarComponentOptions = {
@@ -57,6 +59,7 @@ export class CalendarPage implements OnInit {
 					for (let i in data) {
 						let evenement = data[i];
 						this.evenements.push(evenement);
+
 						console.log("in daysConfigs");
 						if (typeof this.evenements != "undefined") {
 							// console.log(this.evenements.length);
@@ -151,11 +154,17 @@ export class CalendarPage implements OnInit {
 
 	changeValue(event) {
 		var varEvent = document.querySelector('ion-fab-button');
+		var jourNumbers = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"];
+		var moisNumbers = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
 		varEvent.setAttribute('value', event);
+		let theDay = new Date(Date.parse(event._d));
+		let day = theDay.getFullYear() + "-" + moisNumbers[theDay.getMonth()] + "-" + jourNumbers[theDay.getUTCDate()-1];
+		console.log(event, day);
 		let couleurTheme = localStorage.getItem("couleurTheme");
 		let json = {
 			uniqueID: localStorage.getItem('uniqueID'),
-			idCalendar: this.calendar['idCalendrier']
+			idCalendar: this.calendar['idCalendrier'],
+			aDay: day
 		}
 		let httpoption = {
 			headers: new HttpHeaders({
@@ -164,25 +173,27 @@ export class CalendarPage implements OnInit {
 			})
 		};
 
-		this.http.post(environment.adressePython + '/getEventsFromPersonalCalendar', json, httpoption).subscribe(
+		this.http.post(environment.adressePython + '/getEventsFromDay', json, httpoption).subscribe(
 			data => {
 				if (!('vide' in data)) {
 					this.evenements = [];
 					for (let i in data) {
 						let evenement = data[i];
+						console.log(evenement);
 						evenement['couleurThemeRgba'] = hexToRGB(evenement['couleurTheme'], 0.2);
 						evenement['couleurTheme'] = "5px solid " + evenement['couleurTheme'];
 						let debut = evenement['dateDebut'];
 						let fin = evenement['dateFin'];
 						evenement['heureDebut'] = debut.split(' ')[1]
 						evenement['heureFin'] = fin.split(' ')[1];
-						evenement['dateDebut'] = debut.split(' ')[0]
-						evenement['dateFin'] = fin.split(' ')[0]
+						evenement['dateDebut'] = debut.split(' ')[0];
+						evenement['dateFin'] = fin.split(' ')[0];
 						this.evenements.push(evenement);
 					}
 					// this.optionsMulti.daysConfig = this.daysConfig();
 				}
 				else {
+					this.evenements = [];
 					console.log(data);
 				}
 
@@ -294,6 +305,7 @@ export class CalendarPage implements OnInit {
 
 		this.calendar = JSON.parse(localStorage.getItem('calendar'));
 		let couleur = localStorage.getItem('couleurTheme');
+		console.log("ID CALENDAR : " + this.calendar['idCalendrier']);
 		this.daysConfig();
 		let json = {
 			uniqueID: localStorage.getItem('uniqueID'),
@@ -312,6 +324,14 @@ export class CalendarPage implements OnInit {
 					this.evenements = [];
 					for (let i in data) {
 						let evenement = data[i];
+						evenement['couleurThemeRgba'] = hexToRGB(evenement['couleurTheme'], 0.2);
+						evenement['couleurTheme'] = "5px solid " + evenement['couleurTheme'];
+						let debut = evenement['dateDebut'];
+						let fin = evenement['dateFin'];
+						evenement['heureDebut'] = debut.split(' ')[1]
+						evenement['heureFin'] = fin.split(' ')[1];
+						evenement['dateDebut'] = debut.split(' ')[0]
+						evenement['dateFin'] = fin.split(' ')[0]
 						this.evenements.push(evenement);
 					}
 					// this.optionsMulti.daysConfig = this.daysConfig();
@@ -320,6 +340,21 @@ export class CalendarPage implements OnInit {
 					console.log(data);
 				}
 
+			}
+
+		)
+		this.http.post(environment.adressePython + '/getPersonalAmountTransaction', json, httpoption).subscribe(
+			data => {
+				console.log(data);
+				if (('amount' in data)) this.personalAmount = data['amount'];
+				
+			}
+
+		)
+		this.http.post(environment.adressePython + '/getTotalAmountTransactionCalendar', json, httpoption).subscribe(
+			data => {
+				console.log(data);
+				if (('amount' in data)) this.totalAmount = data['amount'];
 			}
 
 		)
@@ -377,23 +412,39 @@ export class CalendarPage implements OnInit {
 
 		function closeDragElement(e) {
 			// stop moving when mouse button is released:
+			// alert("ok");
+			// e = e || window.event;
+			// // e.preventDefault();
+			// // alert(e.touches[0].pageX);
+			// // let clientX = e.clientX;
+			// // let clientY = e.clientY;
+			// // if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
+			// 	let clientX = e.targetTouches[0].clientX;
+			// 	let clientY = e.pageY;
+			// // }
+			// x_end = clientX;
+			// y_end = clientY;
+			// let Xdiff = Math.abs(x_begin - x_end);
+			// let Ydiff = Math.abs(y_begin - y_end);
+			// // alert("x_begin : " + x_begin  +  " , y_begin : " + y_begin + " x_end " + x_end + " y_end " + y_end +  " Xdiff " + Xdiff + " Ydiff" + Ydiff);
+			// if(y_begin < y_end) {
+			// 	buttonAddEvent.style.top = (buttonAddEvent.offsetTop - pos2) + (Ydiff *2) +  "px";
+			// }
+			// else {
+			// 	buttonAddEvent.style.top = (buttonAddEvent.offsetTop - pos2) - (Ydiff *2) +  "px";
+			// }
+			// if(x_begin < x_end) {
+			// 	buttonAddEvent.style.left = (buttonAddEvent.offsetLeft - pos1) + (Ydiff*2) +"px";
+			// }
+			// else {
+			// 	buttonAddEvent.style.left = (buttonAddEvent.offsetLeft - pos1) - (Ydiff*2) +"px";
+			// }
+			// buttonAddEvent.style.top = (buttonAddEvent.offsetTop - pos2) + "px";
+			// buttonAddEvent.style.left = (buttonAddEvent.offsetLeft - pos1) +"px";
 			document.onmouseup = null;
 			document.ontouchend = null;
 			document.onmousemove = null;
 			document.ontouchmove = null;
-			let clientX = e.clientX;
-			let clientY = e.clientY;
-			if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
-				clientX = e.targetTouches[0].pageX;
-				clientY = e.targetTouches[0].pageY;
-			}
-			x_end = clientX;
-			y_end = clientY;
-			let Xdiff = Math.abs(x_begin - x_end);
-			let Ydiff = Math.abs(y_begin - y_end);
-			console.log("x_begin : ",x_begin , " , y_begin : " , y_begin , " x_end ", x_end , " y_end ", y_end ,  " Xdiff " , Xdiff, " Ydiff" , Ydiff);
-			buttonAddEvent.style.top = (buttonAddEvent.offsetTop - pos2) + "px";
-			buttonAddEvent.style.left = (buttonAddEvent.offsetLeft - pos1) +"px";
 		}
 	}
 }

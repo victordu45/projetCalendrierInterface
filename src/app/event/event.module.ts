@@ -8,6 +8,7 @@ import { EventPageRoutingModule } from './event-routing.module';
 
 import { EventPage } from './event.page';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { AjoutdepenseComponent } from '../ajoutdepense/ajoutdepense.component';
 
 @NgModule({
   imports: [
@@ -15,9 +16,13 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     FormsModule,
     IonicModule,
     EventPageRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  declarations: [EventPage],
+  entryComponents:[
+    AjoutdepenseComponent
+  ],
+  declarations: [EventPage,
+  AjoutdepenseComponent],
   providers:[HttpClient]
 })
 export class EventPageModule {}

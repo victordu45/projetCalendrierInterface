@@ -1,6 +1,6 @@
 
 .mainEvenements {
-    // border: 1px solid red;
+    //border: 1px solid red;
     position: relative;
     display: block;   
     font-family: 'Roboto';
@@ -107,4 +107,24 @@ ion-fab-button {
     right: 0;
     height: 100%;
 
+}
+.navExpenses {
+    // border: 1px solid red;
+    margin-top: 1em;
+    padding: 0.5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    // position: absolute;
+    width: 100%;
+    // bottom: 0;
+    background-color: rgb(41, 53, 63);
+}
+.navExpenses .title {
+    color: rgb(77,85,93);
+    margin-bottom: 0.3em;
+}
+.navExpenses .amount {
+    color: white;
+    font-weight: bold;
 }

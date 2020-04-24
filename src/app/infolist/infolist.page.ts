@@ -16,7 +16,7 @@ export class InfolistPage implements OnInit {
   email = null;
   nom = null;
   prenom = null;
-
+  
   ngOnInit() {
     let json = {
       uniqueID: localStorage.getItem('uniqueID')

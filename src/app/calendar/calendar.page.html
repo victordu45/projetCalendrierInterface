@@ -1,42 +1,62 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-back-button slot="start">
-    </ion-back-button>
-    <ion-title>{{calendar['nomCalendrier']}}</ion-title>
-    <ion-buttons slot="end">
-      <ion-button  (click)="alertShare()">
-        <ion-icon name="share"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button routerLink="/chat" routerDirection="forward">
-        <ion-icon name="chatbubbles"></ion-icon>
-        <ion-badge color="primary">{{nombre}}</ion-badge>
-      </ion-button>
-    </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button routerLink="/setting" routerDirection="forward">
-        <ion-icon name="settings"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+	<ion-toolbar>
+		<ion-back-button slot="start">
+		</ion-back-button>
+		<ion-title>{{calendar['nomCalendrier']}}</ion-title>
+		<ion-buttons slot="end">
+			<ion-button (click)="alertShare()">
+				<ion-icon name="share"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-buttons slot="end">
+			<ion-button routerLink="/chat" routerDirection="forward">
+				<ion-icon name="chatbubbles"></ion-icon>
+				<ion-badge color="primary">{{nombre}}</ion-badge>
+			</ion-button>
+		</ion-buttons>
+		<ion-buttons slot="end">
+			<ion-button routerLink="/setting" routerDirection="forward">
+				<ion-icon name="settings"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+	</ion-toolbar>
 </ion-header>
-<ion-calendar [(ngModel)]="dateRange"
-  [options]="optionsMulti"
-  (change)="changeValue($event)"
-  [type]="date"
-  [format]="'YYYY-MM-DD'">
+<ion-calendar [(ngModel)]="dateRange" [options]="optionsMulti" (change)="changeValue($event)" [type]="date"
+	[format]="'YYYY-MM-DD'">
 </ion-calendar>
 <ion-content>
-  <div class='mainEvenements'>
-    <div class='evenement' *ngFor="let i of evenements" [ngStyle]="{'background-color' :i.couleurThemeRgba , 'border-left':i.couleurTheme}" (click)="test(i)">
-      <div class='titre'><ion-icon name="arrow-dropright-circle"></ion-icon>{{i['nomEvenement']}}</div>
-      <div class='containerDebut_Fin'>
-        <div><p><i class='fas fa-hourglass-start'></i>{{i['heureDebut']}}</p></div>
-        <div><p><i class='far'>&#xf273;</i> {{i['dateFin']}}</p></div>
-        <div><p><i class='fas fa-hourglass-end'></i> {{i['heureFin']}}</p></div>
-      </div>
-    </div>
-  </div>
+	<div class='mainEvenements'>
+		<div class='navExpenses'>
+			<div>
+				<div class='title'>MY TOTAL</div>
+				<div class='amount'>{{personalAmount}}</div>
+			</div>
+			<div>
+				<div class='title'>TOTAL</div>
+				<div class='amount'>{{totalAmount}}</div>
+			</div>
+		</div>
+		<div class='evenement' *ngFor="let i of evenements"
+			[ngStyle]="{'background-color' :i.couleurThemeRgba , 'border-left':i.couleurTheme}" (click)="test(i)">
+			<div class='titre'>
+				<ion-icon name="arrow-dropright-circle"></ion-icon>{{i['nomEvenement']}}
+			</div>
+			<div class='containerDebut_Fin'>
+				<div>
+					<p><i class='fas fa-hourglass-start'></i>{{i['heureDebut']}}</p>
+				</div>
+				<div>
+					<p><i class='far'>&#xf273;</i> {{i['dateFin']}}</p>
+				</div>
+				<div>
+					<p><i class='fas fa-hourglass-end'></i> {{i['heureFin']}}</p>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
 </ion-content>
-<ion-fab-button class='addEvent' name="button" value="$event" (click)="redirect()"><ion-icon name="add"></ion-icon></ion-fab-button>
+<ion-fab-button class='addEvent' name="button" value="$event" (click)="redirect()">
+	<ion-icon name="add"></ion-icon>
+</ion-fab-button>

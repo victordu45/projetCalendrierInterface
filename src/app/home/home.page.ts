@@ -15,7 +15,7 @@ export class HomePage {
   password = '';
 
   errorMsg = '';
-
+  
   constructor(private http: HttpClient, private router: Router) { }
 
   onLoginKey(event) { this.user = event.target.value; }
@@ -23,14 +23,17 @@ export class HomePage {
   onPasswordKey(event) { this.password = event.target.value; }
 
   login() {
+    console.log("appuyé");
     let json = {
       user: this.user,
       password: this.password
     }
     let httpoption = {
       headers: new HttpHeaders({
+        
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, PUT'
       })
     };
     this.http.post(environment.adressePython + '/login', json, httpoption).subscribe(
