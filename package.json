@@ -41,6 +41,7 @@
     "ionic-long-press": "^2.0.2",
     "moment": "^2.24.0",
     "ngx-color-picker": "^8.2.0",
+    "ngx-socket-io": "^3.0.1",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router, NavigationExtras } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, IonRefresher } from '@ionic/angular';
 
 @Component({
 	selector: 'app-newevent',
@@ -58,7 +58,12 @@ export class NeweventPage implements OnInit {
 			data => {
 				console.log(data);
 				if (data['result'] == "added") {
-					this.router.navigate(["calendar"]);
+					let navigationExtras: NavigationExtras = {
+						queryParams: {
+							refresh: true
+						}
+					};
+					this.router.navigate(["/calendar"],navigationExtras);
 				}
 				else {
 					this.presentAlert(data['result']);
