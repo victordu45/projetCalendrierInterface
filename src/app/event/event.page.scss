@@ -8,21 +8,28 @@
 .depenses {
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     // height: 50px;
     // padding: 0;
     // margin: 0;
+    flex-wrap: wrap;
     // border: 1px solid purple;
 }
-.ligne {
-    // border: 1px solid red;
-    // height: 50px;
-    // padding: 0;
+.depenses .ligne {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    // border: 1px solid red;
 }
-.ligne:nth-child(1) {
+// .depenses {
+//     border: 1px solid red;
+//     // height: 50px;
+//     // padding: 0;
+//     width: 100%;
+//     display: flex;
+//     justify-content: space-between;
+// }
+.depenses .ligne:nth-child(1) {
     height: 40px;
 }
 .titre, .prix {
