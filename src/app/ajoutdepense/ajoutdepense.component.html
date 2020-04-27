@@ -41,7 +41,7 @@
 		<ion-list>
 			<div *ngFor="let i of membres" id="listeMembresParticipants">
 				<div class='membre'>
-					<ion-checkbox color="primary" (ionChange)="changeBox(i)" checked={i.permission}></ion-checkbox>
+					<ion-checkbox color="primary" (click)="changeBox(i)" checked={i.permission} aria-checked=true></ion-checkbox>
 					<div class='name'>{{i.name}}</div>
 					<div class='amount'>
 						<div class='price'></div>

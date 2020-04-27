@@ -46,7 +46,7 @@ export class AjoutdepenseComponent implements OnInit {
 		}
 		this.http.post(environment.adressePython + '/getMembersWritable', json2, httpoption).subscribe(
 			data => {
-				// console.log(data);
+				console.log(data);
 				let membre;
 				for (let [name, permission] of Object.entries(data)) {
 					// console.log(name, permission);
@@ -84,15 +84,15 @@ export class AjoutdepenseComponent implements OnInit {
 			let checkbox = document.querySelectorAll("#listeMembresParticipants ion-checkbox");
 			for (let i = 0; i < this.membres.length; i++) {
 				let mbr = this.membres[i];
-				if (this.cocher == 0) {
+				if (this.cocher == 1) {
 					this.membres[i]['permission'] = false;
-					checkbox[i].setAttribute("checked", "true");
-					checkbox[i].setAttribute("aria-checked", "true");
+					checkbox[i].setAttribute("checked", "false");
+					checkbox[i].setAttribute("aria-checked", "false");
 				}
 				else {
 					this.membres[i]['permission'] = true;
-					checkbox[i].setAttribute("checked", "false");
-					checkbox[i].setAttribute("aria-checked", "false");
+					checkbox[i].setAttribute("checked", "true");
+					checkbox[i].setAttribute("aria-checked", "true");
 					// mbr['permission'] = "true";
 				}
 			}
@@ -124,7 +124,7 @@ export class AjoutdepenseComponent implements OnInit {
 		for (let i = 0; i < checkbox.length; i++) { // on boucle parmis toutes les checkbox et on vérifie ceux qui sont TRUE pour leur assigner la valeur, et 0 à ceux FALSE
 			let amount = checkbox[i].parentElement.children[2].children[0];
 			console.log("aria checked = " + checkbox[i].getAttribute("aria-checked"));
-			if (checkbox[i].getAttribute("aria-checked") == "true") {
+			if (this.membres[i].permission) {
 				amount.innerHTML = "" + (this.montant / nbParticipants).toFixed(2); // 2 nb après la virgule
 				this.membres[i]['amount'] = (this.montant / nbParticipants).toFixed(2); // on ajoute une valeur à notre tableau d'objet -> le montant que chacun doit payer
 			}
@@ -289,7 +289,7 @@ export class AjoutdepenseComponent implements OnInit {
 
 	addDepense() {
 		this.getAllPrices();
-		if (this.montant != undefined) {
+		if (this.montant != undefined && this.titre != undefined) {
 			let json = {
 				idUtilisateur: localStorage.getItem('uniqueID'),
 				description: this.titre,
@@ -309,9 +309,17 @@ export class AjoutdepenseComponent implements OnInit {
 			
 		this.http.post(environment.adressePython + '/newTransaction', json, httpoption).subscribe(
 			data => {
-				console.log(data);
+				if (!('error' in data)) {
+					console.log(data);
+				}
+				else {
+					alert(data["error"]);
+				}
 			}
 		)
+		}
+		else {
+			alert("Veuillez remplir les champs");
 		}
 
 	}
