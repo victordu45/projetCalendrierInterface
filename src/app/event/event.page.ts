@@ -80,7 +80,7 @@ export class EventPage implements OnInit {
 			heureDebut: ion_datetime[1].value,
 			dateFin: ion_datetime[2].value,
 			heureFin: ion_datetime[3].value,
-			idEvent: this.data['idEvent']
+			idEvenement: this.data['idEvenement']
 		}
 		let httpoption = {
 			headers: new HttpHeaders({
@@ -88,6 +88,7 @@ export class EventPage implements OnInit {
 				'Access-Control-Allow-Origin': '*'
 			})
 		};
+		console.log(json);
 		this.http.post(environment.adressePython + '/modifEvent', json, httpoption).subscribe(
 			data => {
 				console.log(data);
