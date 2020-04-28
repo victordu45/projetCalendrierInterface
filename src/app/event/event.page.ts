@@ -21,10 +21,13 @@ export class EventPage implements OnInit {
 	condition = 0;
 	errorMsg;
 	currentModal: any;
-	
+	personalAmount = 0;
+	totalAmount = 0;
+	logs;
 
 	ngOnInit() {
 		this.transactions = [];
+		this.logs = [];
 		this.route.queryParams.subscribe(params => {
 			if (params && params.special) {
 				this.data = JSON.parse(params.special);
@@ -54,6 +57,32 @@ export class EventPage implements OnInit {
 					}
 				}
 				
+			}
+
+		)
+		this.http.post(environment.adressePython + '/getPersonalAmountTransactionInEvent', json, httpoption).subscribe(
+			data => {
+				console.log(data);
+				if (('amount' in data)) this.personalAmount = data['amount'];
+
+			}
+
+		)
+		this.http.post(environment.adressePython + '/getTotalAmountTransactionInEvent', json, httpoption).subscribe(
+			data => {
+				console.log(data);
+				if (('amount' in data)) this.totalAmount = data['amount'];
+			}
+
+		)
+		this.http.post(environment.adressePython + '/getLogsTransaction', json, httpoption).subscribe(
+			data => {
+				console.log(data);
+				if (!('error' in data)) {
+					for(let i in data) {
+						this.logs.push(data[i]);
+					}
+				}
 			}
 
 		)
