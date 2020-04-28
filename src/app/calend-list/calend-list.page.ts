@@ -3,7 +3,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NavController, AlertController } from '@ionic/angular';
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
 	selector: 'app-calend-list',
 	templateUrl: './calend-list.page.html',
@@ -16,13 +16,21 @@ export class CalendListPage implements OnInit {
 	calendars = [];
 	sharedCalendars = [];
 
-	constructor(private router: Router, private navCtrl: NavController, private http: HttpClient, private alertController: AlertController) {
+	constructor(private router: Router, private navCtrl: NavController, private http: HttpClient, private alertController: AlertController,private route: ActivatedRoute) {
 
 	}
 
 	ngOnInit() {
 		this.login = localStorage.getItem('login');
 		this.uniqueID = localStorage.getItem('uniqueID');
+		this.route.queryParams.subscribe(params => {
+			if (params && params.refresh) {
+				console.log(params);
+				this.getPersonalCalendar();
+				this.getSharedCalendars();
+			}
+		});
+
 		this.getPersonalCalendar();
 		this.getSharedCalendars();
 	}

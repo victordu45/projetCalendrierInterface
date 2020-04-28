@@ -54,22 +54,29 @@ export class NeweventPage implements OnInit {
 				'Access-Control-Allow-Origin': '*'
 			})
 		};
-		this.http.post(environment.adressePython + '/addNewEvent', json, httpoption).subscribe(
-			data => {
-				console.log(data);
-				if (data['result'] == "added") {
-					let navigationExtras: NavigationExtras = {
-						queryParams: {
-							refresh: true
-						}
-					};
-					this.router.navigate(["/calendar"],navigationExtras);
+		
+		if(ion_input[0].value != "") {
+			
+			this.http.post(environment.adressePython + '/addNewEvent', json, httpoption).subscribe(
+				data => {
+					console.log(data);
+					if (data['result'] == "added") {
+						let navigationExtras: NavigationExtras = {
+							queryParams: {
+								refresh: true
+							}
+						};
+						this.router.navigate(["/calendar"],navigationExtras);
+					}
+					else {
+						this.presentAlert(data['result']);
+					}
 				}
-				else {
-					this.presentAlert(data['result']);
-				}
-			}
-		)
+			)
+		}
+		else {
+			this.presentAlert("Please fill in the fields");
+		}
 	}
 	async presentAlert(errorMessage) {
 		const alert = await this.alertController.create({

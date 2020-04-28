@@ -1,33 +1,33 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{date}}</ion-title>
+    <ion-title>New event {{date}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-item>
-    <ion-label>Nom :</ion-label>
-    <ion-input placeholder="Nom de votre événement"></ion-input>
+    <ion-label>Name :</ion-label>
+    <ion-input placeholder="Name of the event"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Description :</ion-label>
-    <ion-input placeholder="Description de votre événement"></ion-input>
+    <ion-input placeholder="Description of your event"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Date début : </ion-label>
+    <ion-label>Start date : </ion-label>
     <ion-datetime value='{{date}}'></ion-datetime>
   </ion-item>
   <ion-item>
-    <ion-label>Heure début : </ion-label>
+    <ion-label>Start hour : </ion-label>
     <ion-datetime display-format='HH:mm' value='00:00'></ion-datetime>
   </ion-item>
   <ion-item>
-    <ion-label>Date Fin : </ion-label>
+    <ion-label>End date : </ion-label>
     <ion-datetime value='{{date}}'></ion-datetime>
   </ion-item>
   <ion-item>
-    <ion-label>Heure Fin : </ion-label>
+    <ion-label>End hour : </ion-label>
     <ion-datetime display-format='HH:mm' value='00:00'></ion-datetime>
   </ion-item>
-  <ion-button color="primary" (click)='valider()'>Valider</ion-button>
+  <ion-button color="primary" (click)='valider()'>ADD</ion-button>
 </ion-content>

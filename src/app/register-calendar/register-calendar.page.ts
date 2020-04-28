@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -37,10 +37,15 @@ export class RegisterCalendarPage implements OnInit {
       data=>{
         console.log(data);
         if(data['result'] == "succes"){
-          this.router.navigateByUrl('/calend-list');
+          let navigationExtras: NavigationExtras = {
+						queryParams: {
+							refresh: true
+						}
+					};
+          this.router.navigateByUrl('/calend-list',navigationExtras);
         }
         else{
-          this.errorMsg = data['result']; 
+          alert(data['error']);
         }
       }
     )
