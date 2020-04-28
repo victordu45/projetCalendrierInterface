@@ -25,7 +25,9 @@ export class CalendListPage implements OnInit {
 		this.uniqueID = localStorage.getItem('uniqueID');
 		this.route.queryParams.subscribe(params => {
 			if (params && params.refresh) {
-				console.log(params);
+				console.log("on est dans le refresh");
+				this.calendars = []
+				this.sharedCalendars = []
 				this.getPersonalCalendar();
 				this.getSharedCalendars();
 			}
@@ -34,6 +36,7 @@ export class CalendListPage implements OnInit {
 		this.getPersonalCalendar();
 		this.getSharedCalendars();
 	}
+
 
 	getPersonalCalendar() {
 		let json = {
@@ -132,20 +135,12 @@ export class CalendListPage implements OnInit {
 		};
 		this.http.post(environment.adressePython + '/getSharedCalendars', json, httpoption).subscribe(
 			data => {
-
-				console.log("shared calendars");
-				console.log(data);
 				if (!('vide' in data)) {
 					for (let i in data) {
 						let calendrier = data[i];
 						this.sharedCalendars.push(calendrier);
 					}
-					// console.log(data);
 				}
-
-				// else{
-				// this.errorMsg = data['result'];
-				// }
 			}
 		)
 	}

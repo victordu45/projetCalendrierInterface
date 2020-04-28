@@ -42,7 +42,7 @@ export class RegisterCalendarPage implements OnInit {
 							refresh: true
 						}
 					};
-          this.router.navigateByUrl('/calend-list',navigationExtras);
+          this.router.navigate(['/calend-list'],navigationExtras);
         }
         else{
           alert(data['error']);
