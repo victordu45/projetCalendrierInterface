@@ -63,7 +63,7 @@ export class NeweventPage implements OnInit {
 			})
 		};
 		
-		if(ion_input[0].value != "") {
+		if(this.nomEvt != "") {
 			
 			this.http.post(environment.adressePython + '/addNewEvent', json, httpoption).subscribe(
 				data => {
