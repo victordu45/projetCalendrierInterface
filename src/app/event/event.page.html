@@ -39,45 +39,6 @@
 
 		</div>
 
-		<!-- <ion-card>
-			<ion-card-header>
-				<ion-card-subtitle>{{data["idEvent"]}}</ion-card-subtitle>
-				<ion-card-title>{{data["nomEvenement"]}}</ion-card-title>
-			</ion-card-header>
-
-			<ion-card-content>
-				{{data['description']}}
-			</ion-card-content>
-		</ion-card>
-		<ion-card>
-			<ion-item class="ion-activated">
-				<ion-icon name="calendar" slot="start"></ion-icon>
-				<ion-label>Date début :</ion-label>
-				<ion-label>{{data['dateDebut']}}</ion-label>
-			</ion-item>
-
-			<ion-item class="ion-activated">
-				<ion-icon name="time" slot="start"></ion-icon>
-				<ion-label>Heure début :</ion-label>
-				<ion-label>{{data['heureDebut']}}</ion-label>
-			</ion-item>
-
-			<ion-item class="ion-activated">
-				<ion-icon name="calendar" slot="start"></ion-icon>
-				<ion-label>Date fin :</ion-label>
-				<ion-label>{{data['dateFin']}}</ion-label>
-			</ion-item>
-
-			<ion-item class="ion-activated">
-				<ion-icon name="time" slot="start"></ion-icon>
-				<ion-label>Heure fin :</ion-label>
-				<ion-label>{{data['heureFin']}}</ion-label>
-			</ion-item>
-		</ion-card>-->
-		<!-- <ion-item>
-			<ion-button (click)="modifier()">Modifier</ion-button>
-			<ion-button (click)="ajouter()">Ajouter dépense</ion-button>
-		</ion-item> -->
 		<ion-list id="expenses">
 			<div  *ngFor="let i of transactions">
 				<ion-item-sliding > 

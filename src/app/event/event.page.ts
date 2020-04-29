@@ -25,12 +25,16 @@ export class EventPage implements OnInit {
 	totalAmount = 0;
 	logs;
 
+	newEvenementName : string;
+	newDescriptionName: string;
+
 	ngOnInit() {
 		this.transactions = [];
 		this.logs = [];
 		this.route.queryParams.subscribe(params => {
 			if (params && params.special) {
 				this.data = JSON.parse(params.special);
+				console.log(this.data);
 			}
 		});
 		console.log(this.data["heureDebut"]);

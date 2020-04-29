@@ -79,6 +79,7 @@ export class CalendarPage implements OnInit {
 						evenement['heureFin'] = fin.split(' ')[1];
 						evenement['dateDebut'] = debut.split(' ')[0]
 						evenement['dateFin'] = fin.split(' ')[0]
+						
 						this.evenements.push(evenement);
 					}
 					// this.optionsMulti.daysConfig = this.daysConfig();
