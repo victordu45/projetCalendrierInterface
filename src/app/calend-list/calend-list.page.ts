@@ -16,7 +16,7 @@ export class CalendListPage implements OnInit {
 	calendars = [];
 	sharedCalendars = [];
 
-	constructor(private router: Router, private navCtrl: NavController, private http: HttpClient, private alertController: AlertController,private route: ActivatedRoute) {
+	constructor(private router: Router, private navCtrl: NavController, private http: HttpClient, private alertController: AlertController, private route: ActivatedRoute) {
 
 	}
 
@@ -107,6 +107,10 @@ export class CalendListPage implements OnInit {
 						this.http.post(environment.adressePython + '/verifToken', json, httpoption).subscribe(
 							data => {
 								console.log(data);
+								if (data['result'] == "token valide") {
+									this.sharedCalendars = []
+									this.getSharedCalendars();
+								}
 							}
 						)
 					}
