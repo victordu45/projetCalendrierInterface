@@ -20,6 +20,11 @@ export class NeweventPage implements OnInit {
 	jour = null;
 	calendar = null;
 	errorMsg = null;
+
+
+	nomEvt : string;
+	description : string;
+
 	ngOnInit() {
 		this.calendar = JSON.parse(localStorage.getItem('calendar'));
 		this.route.queryParams.subscribe(params => {
@@ -41,13 +46,16 @@ export class NeweventPage implements OnInit {
 		let json = {
 			uniqueID: localStorage.getItem('uniqueID'),
 			idCalendar: this.calendar['idCalendrier'],
-			nom: ion_input[0].value,
+			nom: this.nomEvt,
 			dateDebut: ion_datetime[0].value,
 			heureDebut: ion_datetime[1].value,
 			dateFin: ion_datetime[2].value,
 			heureFin: ion_datetime[3].value,
-			description: ion_input[1].value
+			description: this.description
 		}
+
+		console.log("affichage de l'event");
+		console.log(json)
 		let httpoption = {
 			headers: new HttpHeaders({
 				'Content-Type': 'application/json',
