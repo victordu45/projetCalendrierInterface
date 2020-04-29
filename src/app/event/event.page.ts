@@ -25,12 +25,11 @@ export class EventPage implements OnInit {
 	totalAmount = 0;
 	logs;
 
-	newEvenementName : string;
+	newEvenementName: string;
 	newDescriptionName: string;
 
 	ngOnInit() {
-		this.transactions = [];
-		this.logs = [];
+		
 		this.route.queryParams.subscribe(params => {
 			if (params && params.special) {
 				this.data = JSON.parse(params.special);
@@ -38,6 +37,12 @@ export class EventPage implements OnInit {
 			}
 		});
 		console.log(this.data["heureDebut"]);
+		this.load();
+
+	}
+	load() {
+		
+		
 		let json = {
 			uniqueID: localStorage.getItem('uniqueID'),
 			idCalendar: JSON.parse(localStorage.getItem('calendar'))['idCalendrier'],
@@ -54,13 +59,14 @@ export class EventPage implements OnInit {
 			response => {
 				// console.log(data);
 				if (!('vide' in response)) {
-					for(let i in response) {
+					this.transactions = [];
+					for (let i in response) {
 						console.log(response);
 						console.log(this.transactions);
 						this.transactions.push(response[i]);
 					}
 				}
-				
+
 			}
 
 		)
@@ -82,8 +88,9 @@ export class EventPage implements OnInit {
 		this.http.post(environment.adressePython + '/getLogsTransaction', json, httpoption).subscribe(
 			data => {
 				console.log(data);
+				this.logs = [];
 				if (!('error' in data)) {
-					for(let i in data) {
+					for (let i in data) {
 						this.logs.push(data[i]);
 					}
 				}
@@ -175,11 +182,20 @@ export class EventPage implements OnInit {
 	}
 
 	async ajouter() {
-		this.modal = await this.modalController.create({
+		const modal = await this.modalController.create({
 			component: AjoutdepenseComponent,
 		});
-		return await this.modal.present();
-		this.currentModal = this.modal;
+		modal.onDidDismiss().then((detail) => {
+			if (detail !== null) {
+				if(detail.data == "added") {
+					this.load();
+				}
+			}
+		});
+
+		await modal.present();
+
+
 	}
 
 	ionViewWillLeave() {

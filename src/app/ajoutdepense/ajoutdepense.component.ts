@@ -62,9 +62,8 @@ export class AjoutdepenseComponent implements OnInit {
 	dismiss() {
 		// using the injected ModalController this page
 		// can "dismiss" itself and optionally pass back data
-		this.modalController.dismiss({
-			'dismissed': true
-		});
+		console.log("dismissed");
+		this.modalController.dismiss("dismissed");
 	}
 
 	changeBox(boxChanged) {
@@ -311,6 +310,7 @@ export class AjoutdepenseComponent implements OnInit {
 			data => {
 				if (!('error' in data)) {
 					console.log(data);
+					this.modalController.dismiss("added");
 				}
 				else {
 					alert(data["error"]);
@@ -323,4 +323,5 @@ export class AjoutdepenseComponent implements OnInit {
 		}
 
 	}
+	
 }

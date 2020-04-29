@@ -6,7 +6,7 @@ export const environment = {
   production: false,
 
   //mettre l'adresse ip des deux serveurs
-  adressePython: 'http://192.168.1.59:5000',
+  adressePython: 'http://192.168.1.9:5000',
   adresseSocket: 'http://192.168.1.59:5001'
 
 };
